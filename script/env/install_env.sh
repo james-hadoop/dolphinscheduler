@@ -58,4 +58,4 @@ installPath=${installPath:-"/Users/qian.jiang/workspace4os/dolphinscheduler/dolp
 deployUser=${deployUser:-"qian.jiang"}
 
 # The root of zookeeper, for now DolphinScheduler default registry server is zookeeper.
-zkRoot=${zkRoot:-"/dolphinscheduler3"}
+zkRoot=${zkRoot:-"/dolphinscheduler_3"}

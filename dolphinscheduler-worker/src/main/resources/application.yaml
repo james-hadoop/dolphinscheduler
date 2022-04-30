@@ -23,8 +23,8 @@ spring:
     time-zone: UTC
     date-format: "yyyy-MM-dd HH:mm:ss"
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler_3?useUnicode=true&characterEncoding=UTF-8
     username: developer
     password: developer
     hikari:
@@ -42,7 +42,7 @@ spring:
 registry:
   type: zookeeper
   zookeeper:
-    namespace: dolphinscheduler
+    namespace: dolphinscheduler_3
     connect-string: localhost:2181
     retry-policy:
       base-sleep-time: 60ms
