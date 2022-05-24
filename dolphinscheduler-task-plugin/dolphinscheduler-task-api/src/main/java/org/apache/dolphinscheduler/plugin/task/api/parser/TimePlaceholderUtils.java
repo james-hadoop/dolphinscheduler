@@ -286,12 +286,10 @@ public class TimePlaceholderUtils {
     }
 
     // TODO
+
     /**
      * create by james on 2022-05-24.
-     *
-     *
-     */
-    /**
+     * <p>
      * return the formatted date according to the corresponding date format
      *
      * @param expression date expression
@@ -301,7 +299,7 @@ public class TimePlaceholderUtils {
     public static String getPlaceHolderTime(String expression, Date date) {
         logger.warn(String.format("\t===>>> getPlaceHolderTime()"));
         logger.warn(String.format("\t\texpression=%s, date=%s", expression, date.toString()));
-
+        // expression=yyyyMMdd-1, date=Tue May 24 10:28:21 UTC 2022
 
         if (StringUtils.isBlank(expression)) {
             return null;
@@ -310,8 +308,10 @@ public class TimePlaceholderUtils {
             return null;
         }
 
+        logger.warn(String.format("\t\texpression=%s, date=%s", expression, date.toString()));
         String calculatedTime = calculateTime(expression, date);
         logger.warn(String.format("\t\tcalculatedTime=%s", calculatedTime));
+        // calculatedTime=20220523
 
         return calculatedTime;
     }
@@ -330,6 +330,9 @@ public class TimePlaceholderUtils {
             if (expression.startsWith(TIMESTAMP)) {
                 String timeExpression = expression.substring(TIMESTAMP.length() + 1, expression.length() - 1);
 
+                logger.warn(String.format("\t===>>> calculateTime()"));
+                logger.warn(String.format("\t\ttimeExpression=%s", timeExpression));
+
                 Map.Entry<Date, String> entry = calcTimeExpression(timeExpression, date);
 
                 String dateStr = DateUtils.format(entry.getKey(), entry.getValue());
@@ -341,6 +344,8 @@ public class TimePlaceholderUtils {
                 Map.Entry<Date, String> entry = calcTimeExpression(expression, date);
                 value = DateUtils.format(entry.getKey(), entry.getValue());
             }
+
+            logger.warn(String.format("\t\t->->value=%s", value));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw e;

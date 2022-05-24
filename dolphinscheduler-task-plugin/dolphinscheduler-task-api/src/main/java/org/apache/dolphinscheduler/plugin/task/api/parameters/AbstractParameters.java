@@ -59,7 +59,7 @@ public abstract class AbstractParameters implements IParameters {
     /**
      * create by james on 2022-05-24.
      *
-     * 
+     *
      */
     /**
      * get local parameters list
@@ -114,15 +114,14 @@ public abstract class AbstractParameters implements IParameters {
     }
 
     // TODO
+
     /**
      * create by james on 2022-05-24.
-     *
-     * 
      */
     public void setVarPool(String varPool) {
         logger.warn(String.format("\t===>>> setVarPool()"));
-        logger.warn(String.format("\t\tvarPool"));
-        
+        logger.warn(String.format("\t\tvarPool=%s", varPool));
+
         if (org.apache.dolphinscheduler.spi.utils.StringUtils.isEmpty(varPool)) {
             this.varPool = new ArrayList<>();
         } else {

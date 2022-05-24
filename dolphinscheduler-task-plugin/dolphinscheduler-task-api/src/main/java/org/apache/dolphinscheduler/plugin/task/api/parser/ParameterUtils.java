@@ -17,29 +17,21 @@
 
 package org.apache.dolphinscheduler.plugin.task.api.parser;
 
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.PARAMETER_DATETIME;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.PARAMETER_FORMAT_TIME;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.PARAMETER_SHECDULE_TIME;
-
+import org.apache.dolphinscheduler.plugin.task.api.enums.DataType;
 import org.apache.dolphinscheduler.plugin.task.api.model.Property;
 import org.apache.dolphinscheduler.spi.enums.CommandType;
-import org.apache.dolphinscheduler.plugin.task.api.enums.DataType;
 import org.apache.dolphinscheduler.spi.utils.DateUtils;
 import org.apache.dolphinscheduler.spi.utils.JSONUtils;
 import org.apache.dolphinscheduler.spi.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.PreparedStatement;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.*;
 
 /**
  * parameter parse utils
@@ -181,7 +173,7 @@ public class ParameterUtils {
         Map<String, String> allParamMap = new HashMap<>();
         //If it is a complement, a complement time needs to be passed in, according to the task type
         Map<String, String> timeParams = BusinessTimeUtils
-            .getBusinessTime(commandType, scheduleTime);
+                .getBusinessTime(commandType, scheduleTime);
 
         if (timeParams != null) {
             allParamMap.putAll(timeParams);
@@ -248,15 +240,14 @@ public class ParameterUtils {
     }
 
     // TODO
+
     /**
      * create by james on 2022-05-24.
-     *
-     *
      */
     private static String dateTemplateParse(String templateStr, Date date) {
         logger.warn(String.format("\t===>>> dateTemplateParse()"));
         logger.warn(String.format("\t\ttemplateStr=%s, date=%s", templateStr, date.toString()));
-
+        // templateStr={"prop":"str","httpParametersType":"PARAMETER","value":"$[yyyyMMdd-1]"}, date=Tue May 24 10:28:21 UTC 2022
 
         if (templateStr == null) {
             return null;
@@ -272,14 +263,22 @@ public class ParameterUtils {
             if (Pattern.matches(DATE_START_PATTERN, key)) {
                 continue;
             }
+
+            // 将 $[yyyyMMdd-1] 转换成了 20220523
+            logger.warn(String.format("\t\t->-> key=%s, date=%s", key, date));
             String value = TimePlaceholderUtils.getPlaceHolderTime(key, date);
             assert value != null;
+
+            logger.warn(String.format("\t\t->-> newValue=%s, value=%s", newValue, value));
+
+
+
             matcher.appendReplacement(newValue, value);
         }
 
         matcher.appendTail(newValue);
 
-        logger.warn(String.format("\t\tnewValue=%s", newValue));
+
         return newValue.toString();
     }
 
