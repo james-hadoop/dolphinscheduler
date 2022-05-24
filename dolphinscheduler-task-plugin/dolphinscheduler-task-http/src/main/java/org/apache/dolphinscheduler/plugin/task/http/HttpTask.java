@@ -17,8 +17,9 @@
 
 package org.apache.dolphinscheduler.plugin.task.http;
 
-import static org.apache.dolphinscheduler.plugin.task.http.HttpTaskConstants.APPLICATION_JSON;
-
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.Charsets;
 import org.apache.dolphinscheduler.plugin.task.api.AbstractTaskExecutor;
 import org.apache.dolphinscheduler.plugin.task.api.TaskExecutionContext;
 import org.apache.dolphinscheduler.plugin.task.api.model.Property;
@@ -29,9 +30,6 @@ import org.apache.dolphinscheduler.plugin.task.api.utils.MapUtils;
 import org.apache.dolphinscheduler.spi.utils.DateUtils;
 import org.apache.dolphinscheduler.spi.utils.JSONUtils;
 import org.apache.dolphinscheduler.spi.utils.StringUtils;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.io.Charsets;
 import org.apache.http.HttpEntity;
 import org.apache.http.ParseException;
 import org.apache.http.client.config.RequestConfig;
@@ -51,7 +49,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import static org.apache.dolphinscheduler.plugin.task.http.HttpTaskConstants.APPLICATION_JSON;
 
 public class HttpTask extends AbstractTaskExecutor {
 
@@ -124,7 +122,7 @@ public class HttpTask extends AbstractTaskExecutor {
         RequestBuilder builder = createRequestBuilder();
 
         // replace placeholder,and combine local and global parameters
-        Map<String, Property> paramsMap = ParamUtils.convert(taskExecutionContext,getParameters());
+        Map<String, Property> paramsMap = ParamUtils.convert(taskExecutionContext, getParameters());
         if (MapUtils.isEmpty(paramsMap)) {
             paramsMap = new HashMap<>();
         }
@@ -136,7 +134,24 @@ public class HttpTask extends AbstractTaskExecutor {
         if (CollectionUtils.isNotEmpty(httpParameters.getHttpParams())) {
             for (HttpProperty httpProperty : httpParameters.getHttpParams()) {
                 String jsonObject = JSONUtils.toJsonString(httpProperty);
+
+                // TODO
+                /**
+                 * create by james on 2022-05-24.
+                 *
+                 *
+                 */
+                logger.warn(String.format("\t===>>> sendRequest()"));
+                logger.warn(String.format("\t\tjsonObject=%s", jsonObject));
+
                 String params = ParameterUtils.convertParameterPlaceholders(jsonObject, ParamUtils.convert(paramsMap));
+
+                // TODO
+                /**
+                 * create by james on 2022-05-24.
+                 *
+                 * http request params：{"prop":"str","httpParametersType":"PARAMETER","value":"20220523"}
+                 */
                 logger.info("http request params：{}", params);
                 httpPropertyList.add(JSONUtils.parseObject(params, HttpProperty.class));
             }
@@ -154,7 +169,7 @@ public class HttpTask extends AbstractTaskExecutor {
      * @param httpResponse http response
      * @return response body
      * @throws ParseException parse exception
-     * @throws IOException io exception
+     * @throws IOException    io exception
      */
     protected String getResponseBody(CloseableHttpResponse httpResponse) throws ParseException, IOException {
         if (httpResponse == null) {
@@ -180,7 +195,7 @@ public class HttpTask extends AbstractTaskExecutor {
     /**
      * valid response
      *
-     * @param body body
+     * @param body       body
      * @param statusCode status code
      * @return exit status code
      */
@@ -238,7 +253,7 @@ public class HttpTask extends AbstractTaskExecutor {
     /**
      * add request params
      *
-     * @param builder buidler
+     * @param builder          buidler
      * @param httpPropertyList http property list
      */
     protected void addRequestParams(RequestBuilder builder, List<HttpProperty> httpPropertyList) {
@@ -263,7 +278,7 @@ public class HttpTask extends AbstractTaskExecutor {
     /**
      * set headers
      *
-     * @param request request
+     * @param request          request
      * @param httpPropertyList http property list
      */
     protected void setHeaders(HttpUriRequest request, List<HttpProperty> httpPropertyList) {

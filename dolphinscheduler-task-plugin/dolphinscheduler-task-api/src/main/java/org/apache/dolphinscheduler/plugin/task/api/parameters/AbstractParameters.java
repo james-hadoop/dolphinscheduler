@@ -17,28 +17,26 @@
 
 package org.apache.dolphinscheduler.plugin.task.api.parameters;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.dolphinscheduler.plugin.task.api.enums.Direct;
 import org.apache.dolphinscheduler.plugin.task.api.model.Property;
 import org.apache.dolphinscheduler.plugin.task.api.model.ResourceInfo;
 import org.apache.dolphinscheduler.plugin.task.api.parameters.resource.ResourceParametersHelper;
 import org.apache.dolphinscheduler.spi.utils.JSONUtils;
 import org.apache.dolphinscheduler.spi.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.commons.collections4.CollectionUtils;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+import java.util.*;
 
 /**
  * job params related class
  */
 public abstract class AbstractParameters implements IParameters {
+    private static final Logger logger = LoggerFactory.getLogger(AbstractParameters.class);
+
     @Override
     public abstract boolean checkParameters();
 
@@ -57,6 +55,12 @@ public abstract class AbstractParameters implements IParameters {
      */
     public List<Property> varPool;
 
+    // TODO
+    /**
+     * create by james on 2022-05-24.
+     *
+     * 
+     */
     /**
      * get local parameters list
      *
@@ -67,18 +71,24 @@ public abstract class AbstractParameters implements IParameters {
     }
 
     public void setLocalParams(List<Property> localParams) {
+        logger.warn(String.format("\t===>>> setLocalParams()"));
+        for (Property p : localParams) {
+            logger.warn(String.format("\t\t%s -> %s", p.getProp(), p.getValue()));
+        }
+
         this.localParams = localParams;
     }
 
     /**
      * get local parameters map
+     *
      * @return parameters map
      */
     public Map<String, Property> getLocalParametersMap() {
         Map<String, Property> localParametersMaps = new LinkedHashMap<>();
         if (localParams != null) {
             for (Property property : localParams) {
-                localParametersMaps.put(property.getProp(),property);
+                localParametersMaps.put(property.getProp(), property);
             }
         }
         return localParametersMaps;
@@ -103,7 +113,16 @@ public abstract class AbstractParameters implements IParameters {
         return varPool;
     }
 
+    // TODO
+    /**
+     * create by james on 2022-05-24.
+     *
+     * 
+     */
     public void setVarPool(String varPool) {
+        logger.warn(String.format("\t===>>> setVarPool()"));
+        logger.warn(String.format("\t\tvarPool"));
+        
         if (org.apache.dolphinscheduler.spi.utils.StringUtils.isEmpty(varPool)) {
             this.varPool = new ArrayList<>();
         } else {
@@ -161,6 +180,7 @@ public abstract class AbstractParameters implements IParameters {
 
     /**
      * shell's result format is key=value$VarPool$key=value$VarPool$
+     *
      * @param result
      * @return
      */

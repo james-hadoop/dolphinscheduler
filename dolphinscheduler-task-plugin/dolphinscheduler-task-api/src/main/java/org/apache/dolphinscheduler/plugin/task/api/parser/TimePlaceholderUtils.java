@@ -17,43 +17,15 @@
 
 package org.apache.dolphinscheduler.plugin.task.api.parser;
 
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.ADD_CHAR;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.ADD_MONTHS;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.ADD_STRING;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.COMMA;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.DIVISION_CHAR;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.DIVISION_STRING;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.LEFT_BRACE_CHAR;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.LEFT_BRACE_STRING;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.MONTH_BEGIN;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.MONTH_END;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.MULTIPLY_CHAR;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.MULTIPLY_STRING;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.N;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.P;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.PARAMETER_FORMAT_TIME;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.RIGHT_BRACE_CHAR;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.SUBTRACT_CHAR;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.SUBTRACT_STRING;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.TIMESTAMP;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.WEEK_BEGIN;
-import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.WEEK_END;
-import static org.apache.dolphinscheduler.spi.utils.DateUtils.addDays;
-import static org.apache.dolphinscheduler.spi.utils.DateUtils.addMinutes;
-import static org.apache.dolphinscheduler.spi.utils.DateUtils.addMonths;
-
 import org.apache.dolphinscheduler.spi.utils.DateUtils;
 import org.apache.dolphinscheduler.spi.utils.StringUtils;
-
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
+
+import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.*;
+import static org.apache.dolphinscheduler.spi.utils.DateUtils.*;
 
 /**
  * time place holder utils
@@ -291,7 +263,7 @@ public class TimePlaceholderUtils {
      * Placeholder replacement resolver
      */
     private static class TimePlaceholderResolver implements
-        PropertyPlaceholderHelper.PlaceholderResolver {
+            PropertyPlaceholderHelper.PlaceholderResolver {
 
         private final String value;
 
@@ -313,6 +285,12 @@ public class TimePlaceholderUtils {
         }
     }
 
+    // TODO
+    /**
+     * create by james on 2022-05-24.
+     *
+     *
+     */
     /**
      * return the formatted date according to the corresponding date format
      *
@@ -321,13 +299,21 @@ public class TimePlaceholderUtils {
      * @return reformat date
      */
     public static String getPlaceHolderTime(String expression, Date date) {
+        logger.warn(String.format("\t===>>> getPlaceHolderTime()"));
+        logger.warn(String.format("\t\texpression=%s, date=%s", expression, date.toString()));
+
+
         if (StringUtils.isBlank(expression)) {
             return null;
         }
         if (null == date) {
             return null;
         }
-        return calculateTime(expression, date);
+
+        String calculatedTime = calculateTime(expression, date);
+        logger.warn(String.format("\t\tcalculatedTime=%s", calculatedTime));
+
+        return calculatedTime;
     }
 
     /**
@@ -561,7 +547,7 @@ public class TimePlaceholderUtils {
         } else {
 
             calcExpression = String.format("60*24*(%s)%s", minuteExpression.substring(0, index),
-                minuteExpression.substring(index));
+                    minuteExpression.substring(index));
         }
 
         return calculate(calcExpression);

@@ -38,6 +38,12 @@ public class ParametersNode {
     public static class ParametersNodeBuilder {
         private String taskType;
 
+        // TODO
+        /**
+         * create by james on 2022-05-24.
+         *
+         * HttpTask 的参数
+         */
         private String taskParams;
 
         private String dependence;

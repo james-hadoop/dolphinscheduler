@@ -108,6 +108,13 @@ public class TaskExecuteProcessor implements NettyRequestProcessor {
             logger.error("task execute request command is null");
             return;
         }
+
+        // TODO
+        /**
+         * create by james on 2022-05-24.
+         *
+         * "taskParams": "{\"localParams\":[],\"resourceList\":[],\"httpMethod\":\"GET\",\"httpCheckCondition\":\"STATUS_CODE_DEFAULT\",\"httpParams\":[{\"prop\":\"str\",\"httpParametersType\":\"PARAMETER\",\"value\":\"$[yyyyMMdd-1]\"}],\"url\":\"http://localhost:18003/echo/date_to_ts\",\"condition\":\"16\",\"connectTimeout\":60000,\"socketTimeout\":60000}",
+         */
         logger.info("task execute request command : {}", taskRequestCommand);
 
         String contextJson = taskRequestCommand.getTaskExecutionContext();

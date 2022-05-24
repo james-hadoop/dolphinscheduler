@@ -56,6 +56,12 @@ public class ParameterUtils {
         throw new UnsupportedOperationException("Construct ParameterUtils");
     }
 
+    // TODO
+    /**
+     * create by james on 2022-05-24.
+     *
+     * 将 $[yyyyMMdd-1] 转换成 20220523
+     */
     /**
      * convert parameters place holders
      *
@@ -241,7 +247,17 @@ public class ParameterUtils {
         return map;
     }
 
+    // TODO
+    /**
+     * create by james on 2022-05-24.
+     *
+     *
+     */
     private static String dateTemplateParse(String templateStr, Date date) {
+        logger.warn(String.format("\t===>>> dateTemplateParse()"));
+        logger.warn(String.format("\t\ttemplateStr=%s, date=%s", templateStr, date.toString()));
+
+
         if (templateStr == null) {
             return null;
         }
@@ -263,6 +279,7 @@ public class ParameterUtils {
 
         matcher.appendTail(newValue);
 
+        logger.warn(String.format("\t\tnewValue=%s", newValue));
         return newValue.toString();
     }
 
