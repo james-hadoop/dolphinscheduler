@@ -46,7 +46,7 @@ import org.slf4j.LoggerFactory;
 
 import com.zaxxer.hikari.HikariDataSource;
 
-import sun.security.krb5.Config;
+//import sun.security.krb5.Config;
 
 public class HiveDataSourceClient extends CommonDataSourceClient {
 
@@ -95,11 +95,11 @@ public class HiveDataSourceClient extends CommonDataSourceClient {
         if (kerberosStartupState && StringUtils.isNotBlank(krb5File)) {
             System.setProperty(JAVA_SECURITY_KRB5_CONF, krb5File);
             try {
-                Config.refresh();
-                Class<?> kerberosName = Class.forName("org.apache.hadoop.security.authentication.util.KerberosName");
-                Field field = kerberosName.getDeclaredField("defaultRealm");
-                field.setAccessible(true);
-                field.set(null, Config.getInstance().getDefaultRealm());
+//                Config.refresh();
+//                Class<?> kerberosName = Class.forName("org.apache.hadoop.security.authentication.util.KerberosName");
+//                Field field = kerberosName.getDeclaredField("defaultRealm");
+//                field.setAccessible(true);
+//                field.set(null, Config.getInstance().getDefaultRealm());
             } catch (Exception e) {
                 throw new RuntimeException("Update Kerberos environment failed.", e);
             }

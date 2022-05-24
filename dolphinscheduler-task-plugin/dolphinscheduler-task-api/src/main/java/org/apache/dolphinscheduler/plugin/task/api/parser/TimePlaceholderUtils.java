@@ -299,7 +299,7 @@ public class TimePlaceholderUtils {
     public static String getPlaceHolderTime(String expression, Date date) {
         logger.warn(String.format("===>>> getPlaceHolderTime()"));
         logger.warn(String.format("\texpression=%s, date=%s", expression, date.toString()));
-        // expression=yyyyMMdd-1, date=Tue May 24 10:28:21 UTC 2022
+        // expression=yyyyMMdd-1, date=Tue May 24 11:30:10 UTC 2022
 
         if (StringUtils.isBlank(expression)) {
             return null;
@@ -309,6 +309,7 @@ public class TimePlaceholderUtils {
         }
 
         logger.warn(String.format("\texpression=%s, date=%s", expression, date.toString()));
+        // expression=yyyyMMdd-1, date=Tue May 24 11:30:10 UTC 2022
         String calculatedTime = calculateTime(expression, date);
         logger.warn(String.format("\tcalculatedTime=%s", calculatedTime));
         // calculatedTime=20220523
@@ -326,6 +327,7 @@ public class TimePlaceholderUtils {
         // After N years: $[add_months(yyyyMMdd,12*N)], the first N months: $[add_months(yyyyMMdd,-N)], etc
         String value;
         logger.warn(String.format("===>>> calculateTime()"));
+        logger.warn(String.format("\t->->expression=%s, date=%s", expression, date));
 
         try {
             if (expression.startsWith(TIMESTAMP)) {
@@ -333,11 +335,11 @@ public class TimePlaceholderUtils {
 
                 Map.Entry<Date, String> entry = calcTimeExpression(timeExpression, date);
 
-                String dateStr = DateUtils.format(entry.getKey(), entry.getValue());
+                String dateStr = DateUtils.format(entry.getKey(), PARAMETER_FORMAT_TIME);
 
                 Date timestamp = DateUtils.parse(dateStr, PARAMETER_FORMAT_TIME);
 
-                value = String.valueOf(timestamp.getTime() / 1000);
+                value = String.valueOf(timestamp.getTime() / 1000 * 1000);
 
                 logger.warn(String.format("\t->->timeExpression=%s", timeExpression));
                 logger.warn(String.format("\t->->value=%s, timeExpression=%s", value, timeExpression));
@@ -345,7 +347,9 @@ public class TimePlaceholderUtils {
                 Map.Entry<Date, String> entry = calcTimeExpression(expression, date);
                 value = DateUtils.format(entry.getKey(), entry.getValue());
                 logger.warn(String.format("\t->->entry.getKey()=%s, entry.getValue()=%s", entry.getKey(), entry.getValue()));
+                // entry.getKey()=Mon May 23 11:30:10 UTC 2022, entry.getValue()=yyyyMMdd
                 logger.warn(String.format("\t->->value=%s", value));
+                // ->->value=20220523
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -365,6 +369,7 @@ public class TimePlaceholderUtils {
     public static Map.Entry<Date, String> calcTimeExpression(String expression, Date date) {
         logger.warn(String.format("===>>> calcTimeExpression()"));
         logger.warn(String.format("\texpression=%s, date=%s", expression, date));
+        // expression=yyyyMMdd-1, date=Tue May 24 11:30:10 UTC 2022
 
         Map.Entry<Date, String> resultEntry;
 

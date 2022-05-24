@@ -17,7 +17,11 @@
 
 package org.apache.dolphinscheduler.spi.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -25,9 +29,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import java.util.TimeZone;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * date utils
@@ -40,6 +41,15 @@ public class DateUtils {
     static final long C3 = C2 * 1000L;
     static final long C4 = C3 * 60L;
     static final long C5 = C4 * 60L;
+
+    public static void main(String[] args) {
+        String date = "20220523";
+        String format = "yyyyMMdd";
+
+        Date dt = parse2Date(date, format);
+
+        System.out.println(dt);
+    }
 
     /**
      * a default datetime formatter for the timestamp
@@ -61,7 +71,7 @@ public class DateUtils {
     }
 
     /**
-     * @param timeMillis timeMillis like System.currentTimeMillis()
+     * @param timeMillis        timeMillis like System.currentTimeMillis()
      * @param dateTimeFormatter expect formatter, like yyyy-MM-dd HH:mm:ss
      * @return formatted string
      */
@@ -95,7 +105,7 @@ public class DateUtils {
     /**
      * get the formatted date string
      *
-     * @param date date
+     * @param date   date
      * @param format e.g. yyyy-MM-dd HH:mm:ss
      * @return date string
      */
@@ -107,7 +117,7 @@ public class DateUtils {
      * get the formatted date string
      *
      * @param localDateTime local data time
-     * @param format yyyy-MM-dd HH:mm:ss
+     * @param format        yyyy-MM-dd HH:mm:ss
      * @return date string
      */
     public static String format(LocalDateTime localDateTime, String format) {
@@ -117,14 +127,39 @@ public class DateUtils {
     /**
      * convert string to date and time
      *
-     * @param date date
+     * @param date   date
      * @param format format
      * @return date
      */
     public static Date parse(String date, String format) {
+        logger.warn(String.format("===>>> parse()"));
+        logger.warn(String.format("\tdate=%s, format=%s", date, format));
+        System.out.println(String.format("\tdate=%s, format=%s", date, format));
+
         try {
             LocalDateTime ldt = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(format));
             return localDateTime2Date(ldt);
+        } catch (Exception e) {
+            logger.error("error while parse date:" + date, e);
+        }
+        return null;
+    }
+
+    /**
+     * @param date
+     * @param format
+     * @return
+     */
+    public static Date parse2Date(String date, String format) {
+        logger.warn(String.format("===>>> parse()"));
+        logger.warn(String.format("\tdate=%s, format=%s", date, format));
+        System.out.println(String.format("\tdate=%s, format=%s", date, format));
+
+        try {
+            LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
+            ZoneId zone = ZoneId.systemDefault();
+            Instant instant = localDate.atStartOfDay().atZone(zone).toInstant();
+            return Date.from(instant);
         } catch (Exception e) {
             logger.error("error while parse date:" + date, e);
         }
@@ -197,7 +232,7 @@ public class DateUtils {
      * compare two dates
      *
      * @param future future date
-     * @param old old date
+     * @param old    old date
      * @return true if future time greater than old time
      */
     public static boolean compare(Date future, Date old) {
@@ -389,9 +424,9 @@ public class DateUtils {
     /**
      * get date
      *
-     * @param date date
+     * @param date          date
      * @param calendarField calendarField
-     * @param amount amount
+     * @param amount        amount
      * @return date
      */
     public static Date add(final Date date, final int calendarField, final int amount) {
@@ -408,7 +443,7 @@ public class DateUtils {
      * starting from the current time, get how many seconds are left before the target time.
      * targetTime = baseTime + intervalSeconds
      *
-     * @param baseTime base time
+     * @param baseTime        base time
      * @param intervalSeconds a period of time
      * @return the number of seconds
      */

@@ -152,11 +152,16 @@ public class HttpTask extends AbstractTaskExecutor {
                  * create by james on 2022-05-24.
                  *
                  * http request params：{"prop":"str","httpParametersType":"PARAMETER","value":"20220523"}
+                 *
+                 * http request params：{"prop":"need_ts","httpParametersType":"PARAMETER","value":"true"}
                  */
                 logger.info("http request params：{}", params);
                 httpPropertyList.add(JSONUtils.parseObject(params, HttpProperty.class));
-            }
+            } // for
         }
+
+
+
         addRequestParams(builder, httpPropertyList);
         String requestUrl = ParameterUtils.convertParameterPlaceholders(httpParameters.getUrl(), ParamUtils.convert(paramsMap));
         HttpUriRequest request = builder.setUri(requestUrl).build();
