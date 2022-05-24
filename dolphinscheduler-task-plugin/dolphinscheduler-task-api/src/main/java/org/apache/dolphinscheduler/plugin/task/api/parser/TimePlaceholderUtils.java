@@ -297,8 +297,8 @@ public class TimePlaceholderUtils {
      * @return reformat date
      */
     public static String getPlaceHolderTime(String expression, Date date) {
-        logger.warn(String.format("\t===>>> getPlaceHolderTime()"));
-        logger.warn(String.format("\t\texpression=%s, date=%s", expression, date.toString()));
+        logger.warn(String.format("===>>> getPlaceHolderTime()"));
+        logger.warn(String.format("\texpression=%s, date=%s", expression, date.toString()));
         // expression=yyyyMMdd-1, date=Tue May 24 10:28:21 UTC 2022
 
         if (StringUtils.isBlank(expression)) {
@@ -308,9 +308,9 @@ public class TimePlaceholderUtils {
             return null;
         }
 
-        logger.warn(String.format("\t\texpression=%s, date=%s", expression, date.toString()));
+        logger.warn(String.format("\texpression=%s, date=%s", expression, date.toString()));
         String calculatedTime = calculateTime(expression, date);
-        logger.warn(String.format("\t\tcalculatedTime=%s", calculatedTime));
+        logger.warn(String.format("\tcalculatedTime=%s", calculatedTime));
         // calculatedTime=20220523
 
         return calculatedTime;
@@ -325,13 +325,11 @@ public class TimePlaceholderUtils {
     private static String calculateTime(String expression, Date date) {
         // After N years: $[add_months(yyyyMMdd,12*N)], the first N months: $[add_months(yyyyMMdd,-N)], etc
         String value;
+        logger.warn(String.format("===>>> calculateTime()"));
 
         try {
             if (expression.startsWith(TIMESTAMP)) {
                 String timeExpression = expression.substring(TIMESTAMP.length() + 1, expression.length() - 1);
-
-                logger.warn(String.format("\t===>>> calculateTime()"));
-                logger.warn(String.format("\t\ttimeExpression=%s", timeExpression));
 
                 Map.Entry<Date, String> entry = calcTimeExpression(timeExpression, date);
 
@@ -340,12 +338,15 @@ public class TimePlaceholderUtils {
                 Date timestamp = DateUtils.parse(dateStr, PARAMETER_FORMAT_TIME);
 
                 value = String.valueOf(timestamp.getTime() / 1000);
+
+                logger.warn(String.format("\t->->timeExpression=%s", timeExpression));
+                logger.warn(String.format("\t->->value=%s, timeExpression=%s", value, timeExpression));
             } else {
                 Map.Entry<Date, String> entry = calcTimeExpression(expression, date);
                 value = DateUtils.format(entry.getKey(), entry.getValue());
+                logger.warn(String.format("\t->->entry.getKey()=%s, entry.getValue()=%s", entry.getKey(), entry.getValue()));
+                logger.warn(String.format("\t->->value=%s", value));
             }
-
-            logger.warn(String.format("\t\t->->value=%s", value));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw e;
@@ -362,6 +363,9 @@ public class TimePlaceholderUtils {
      * @return map with date, date format
      */
     public static Map.Entry<Date, String> calcTimeExpression(String expression, Date date) {
+        logger.warn(String.format("===>>> calcTimeExpression()"));
+        logger.warn(String.format("\texpression=%s, date=%s", expression, date));
+
         Map.Entry<Date, String> resultEntry;
 
         if (expression.startsWith(ADD_MONTHS)) {

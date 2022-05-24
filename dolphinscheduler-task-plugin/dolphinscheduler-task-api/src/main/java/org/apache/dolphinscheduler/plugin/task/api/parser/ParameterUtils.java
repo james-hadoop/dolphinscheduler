@@ -246,7 +246,7 @@ public class ParameterUtils {
      */
     private static String dateTemplateParse(String templateStr, Date date) {
         logger.warn(String.format("\t===>>> dateTemplateParse()"));
-        logger.warn(String.format("\t\ttemplateStr=%s, date=%s", templateStr, date.toString()));
+        logger.warn(String.format("\ttemplateStr=%s, date=%s", templateStr, date.toString()));
         // templateStr={"prop":"str","httpParametersType":"PARAMETER","value":"$[yyyyMMdd-1]"}, date=Tue May 24 10:28:21 UTC 2022
 
         if (templateStr == null) {
@@ -265,11 +265,11 @@ public class ParameterUtils {
             }
 
             // 将 $[yyyyMMdd-1] 转换成了 20220523
-            logger.warn(String.format("\t\t->-> key=%s, date=%s", key, date));
+            logger.warn(String.format("\t->-> key=%s, date=%s", key, date));
             String value = TimePlaceholderUtils.getPlaceHolderTime(key, date);
             assert value != null;
 
-            logger.warn(String.format("\t\t->-> newValue=%s, value=%s", newValue, value));
+            logger.warn(String.format("\t->-> newValue=%s, value=%s", newValue, value));
 
 
 

@@ -141,8 +141,8 @@ public class HttpTask extends AbstractTaskExecutor {
                  *
                  *
                  */
-                logger.warn(String.format("\t===>>> sendRequest()"));
-                logger.warn(String.format("\t\tjsonObject=%s", jsonObject));
+                logger.warn(String.format("===>>> sendRequest()"));
+                logger.warn(String.format("\tjsonObject=%s", jsonObject));
                 // jsonObject={"prop":"str","httpParametersType":"PARAMETER","value":"$[yyyyMMdd-1]"}
 
                 String params = ParameterUtils.convertParameterPlaceholders(jsonObject, ParamUtils.convert(paramsMap));

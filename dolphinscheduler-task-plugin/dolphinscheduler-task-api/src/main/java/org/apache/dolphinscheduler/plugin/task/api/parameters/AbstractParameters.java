@@ -71,9 +71,9 @@ public abstract class AbstractParameters implements IParameters {
     }
 
     public void setLocalParams(List<Property> localParams) {
-        logger.warn(String.format("\t===>>> setLocalParams()"));
+        logger.warn(String.format("===>>> setLocalParams()"));
         for (Property p : localParams) {
-            logger.warn(String.format("\t\t%s -> %s", p.getProp(), p.getValue()));
+            logger.warn(String.format("\t%s -> %s", p.getProp(), p.getValue()));
         }
 
         this.localParams = localParams;
@@ -119,8 +119,8 @@ public abstract class AbstractParameters implements IParameters {
      * create by james on 2022-05-24.
      */
     public void setVarPool(String varPool) {
-        logger.warn(String.format("\t===>>> setVarPool()"));
-        logger.warn(String.format("\t\tvarPool=%s", varPool));
+        logger.warn(String.format("===>>> setVarPool()"));
+        logger.warn(String.format("\tvarPool=%s", varPool));
 
         if (org.apache.dolphinscheduler.spi.utils.StringUtils.isEmpty(varPool)) {
             this.varPool = new ArrayList<>();
