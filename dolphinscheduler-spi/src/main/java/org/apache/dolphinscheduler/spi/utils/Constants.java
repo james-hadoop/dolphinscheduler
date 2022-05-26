@@ -65,6 +65,16 @@ public class Constants {
     public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
     /**
+     * date format of yyyyMMdd000000
+     */
+    public static final String YYYYMMDD000000 = "yyyyMMdd000000";
+
+    /**
+     * date format of yyyyMMdd
+     */
+    public static final String YYYYMMDD = "yyyyMMdd";
+
+    /**
      * date format of yyyyMMddHHmmss
      */
     public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";

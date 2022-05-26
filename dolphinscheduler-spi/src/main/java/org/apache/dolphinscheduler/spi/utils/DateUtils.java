@@ -42,15 +42,6 @@ public class DateUtils {
     static final long C4 = C3 * 60L;
     static final long C5 = C4 * 60L;
 
-    public static void main(String[] args) {
-        String date = "20220523";
-        String format = "yyyyMMdd";
-
-        Date dt = parse2Date(date, format);
-
-        System.out.println(dt);
-    }
-
     /**
      * a default datetime formatter for the timestamp
      */
@@ -103,6 +94,23 @@ public class DateUtils {
     }
 
     /**
+     * local datetime to date
+     *
+     * @param localDateTime local datetime
+     * @param zoneId        zone id
+     * @return date
+     */
+    private static Date localDateTime2Date(LocalDateTime localDateTime, ZoneId zoneId) {
+        if (null == zoneId) {
+            return localDateTime2Date(localDateTime);
+        }
+
+        Instant instant = localDateTime.atZone(zoneId).toInstant();
+        return Date.from(instant);
+    }
+
+
+    /**
      * get the formatted date string
      *
      * @param date   date
@@ -138,7 +146,10 @@ public class DateUtils {
 
         try {
             LocalDateTime ldt = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(format));
-            return localDateTime2Date(ldt);
+            // modified by james
+            ZoneId zoneId = ZoneId.of("UTC");
+
+            return localDateTime2Date(ldt, zoneId);
         } catch (Exception e) {
             logger.error("error while parse date:" + date, e);
         }
