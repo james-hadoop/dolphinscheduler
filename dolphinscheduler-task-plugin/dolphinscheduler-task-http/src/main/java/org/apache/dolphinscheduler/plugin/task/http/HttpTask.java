@@ -119,6 +119,8 @@ public class HttpTask extends AbstractTaskExecutor {
      * @throws IOException io exception
      */
     protected CloseableHttpResponse sendRequest(CloseableHttpClient client) throws IOException {
+        logger.warn(String.format("===>>> sendRequest()"));
+
         RequestBuilder builder = createRequestBuilder();
 
         // replace placeholder,and combine local and global parameters
@@ -134,33 +136,15 @@ public class HttpTask extends AbstractTaskExecutor {
         if (CollectionUtils.isNotEmpty(httpParameters.getHttpParams())) {
             for (HttpProperty httpProperty : httpParameters.getHttpParams()) {
                 String jsonObject = JSONUtils.toJsonString(httpProperty);
-
-                // TODO
-                /**
-                 * create by james on 2022-05-24.
-                 *
-                 *
-                 */
-                logger.warn(String.format("===>>> sendRequest()"));
                 logger.warn(String.format("\tjsonObject=%s", jsonObject));
                 // jsonObject={"prop":"str","httpParametersType":"PARAMETER","value":"$[yyyyMMdd-1]"}
-
                 String params = ParameterUtils.convertParameterPlaceholders(jsonObject, ParamUtils.convert(paramsMap));
 
-                // TODO
-                /**
-                 * create by james on 2022-05-24.
-                 *
-                 * http request params：{"prop":"str","httpParametersType":"PARAMETER","value":"20220523"}
-                 *
-                 * http request params：{"prop":"need_ts","httpParametersType":"PARAMETER","value":"true"}
-                 */
+                // http request params：{"prop":"str","httpParametersType":"PARAMETER","value":"20220523"}
                 logger.info("http request params：{}", params);
                 httpPropertyList.add(JSONUtils.parseObject(params, HttpProperty.class));
             } // for
         }
-
-
 
         addRequestParams(builder, httpPropertyList);
         String requestUrl = ParameterUtils.convertParameterPlaceholders(httpParameters.getUrl(), ParamUtils.convert(paramsMap));

@@ -17,14 +17,11 @@
 
 package org.apache.dolphinscheduler.plugin.task.api.parser;
 
-import org.apache.dolphinscheduler.plugin.task.api.utils.JamesDateUtil;
 import org.apache.dolphinscheduler.spi.utils.DateUtils;
 import org.apache.dolphinscheduler.spi.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
 import java.util.*;
 
 import static org.apache.dolphinscheduler.plugin.task.api.TaskConstants.*;
@@ -124,8 +121,6 @@ public class TimePlaceholderUtils {
     }
 
     /**
-     * to suffix expression
-     *
      * @param srcList
      * @return
      */
@@ -288,8 +283,6 @@ public class TimePlaceholderUtils {
         }
     }
 
-    // TODO
-
     /**
      * create by james on 2022-05-24.
      * <p>
@@ -330,7 +323,7 @@ public class TimePlaceholderUtils {
         // After N years: $[add_months(yyyyMMdd,12*N)], the first N months: $[add_months(yyyyMMdd,-N)], etc
         String value;
         logger.warn(String.format("===>>> calculateTime()"));
-        logger.warn(String.format("\t->->expression=%s, date=%s", expression, date));
+        logger.warn(String.format("\texpression=%s, date=%s", expression, date));
 
         try {
             // $[timestamp(yyyyMMdd-1)] will be here
@@ -338,28 +331,18 @@ public class TimePlaceholderUtils {
                 String timeExpression = expression.substring(TIMESTAMP.length() + 1, expression.length() - 1);
 
                 Map.Entry<Date, String> entry = calcTimeExpression(timeExpression, date);
-                logger.warn(String.format("\t->->entry.getKey()=%s, entry.getValue()=%s", entry.getKey(), entry.getValue()));
+                logger.warn(String.format("->->entry.getKey()=%s, entry.getValue()=%s", entry.getKey(), entry.getValue()));
 
                 String dateStr = DateUtils.format(entry.getKey(), "yyyyMMdd000000");
                 Date timestamp = DateUtils.parse(dateStr, PARAMETER_FORMAT_TIME);
-                logger.warn(String.format("timestamp: %s -> %s", timestamp.toString(), timestamp.getTime()));
+                logger.warn(String.format("->->timestamp: %s -> %s", timestamp.toString(), timestamp.getTime()));
 
-//                SimpleDateFormat sdf = JamesDateUtil.yyyy_MM_dd.get();
-//                String dateString = JamesDateUtil.date2Str(entry.getKey(), sdf);
-//
-//                Date dt = JamesDateUtil.str2Date(dateString, sdf);
-//                logger.warn(String.format("ts: %s -> %s", dt.toString(), dt.getTime()));
-
-                // 减去 8 个小时
+                // modified by James. 只使用与形如：$[timestamp(yyyyMMdd-1)]的调度时间，将 UTC 时间转换成 CST 时间的时间戳，减去 8 个小时
                 return String.valueOf(timestamp.getTime() - 28800000);
-
             } else {
+                // entry.getKey()=Mon May 23 11:30:10 UTC 2022, entry.getValue()=yyyyMMdd
                 Map.Entry<Date, String> entry = calcTimeExpression(expression, date);
                 value = DateUtils.format(entry.getKey(), entry.getValue());
-                logger.warn(String.format("\t->->entry.getKey()=%s, entry.getValue()=%s", entry.getKey(), entry.getValue()));
-                // entry.getKey()=Mon May 23 11:30:10 UTC 2022, entry.getValue()=yyyyMMdd
-                logger.warn(String.format("\t->->value=%s", value));
-                // ->->value=20220523
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

@@ -48,7 +48,7 @@ public class ParameterUtils {
         throw new UnsupportedOperationException("Construct ParameterUtils");
     }
 
-    // TODO
+
     /**
      * create by james on 2022-05-24.
      *
@@ -239,8 +239,6 @@ public class ParameterUtils {
         return map;
     }
 
-    // TODO
-
     /**
      * create by james on 2022-05-24.
      */
@@ -265,13 +263,11 @@ public class ParameterUtils {
             }
 
             // 将 $[yyyyMMdd-1] 转换成了 20220523
-            logger.warn(String.format("\t->-> key=%s, date=%s", key, date));
+            logger.warn(String.format("key=%s, date=%s", key, date));
             String value = TimePlaceholderUtils.getPlaceHolderTime(key, date);
             assert value != null;
 
-            logger.warn(String.format("\t->-> newValue=%s, value=%s", newValue, value));
-
-
+            logger.warn(String.format("value=%s", value));
 
             matcher.appendReplacement(newValue, value);
         }
