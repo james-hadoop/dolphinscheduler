@@ -83,8 +83,11 @@ public class DataxTask extends AbstractTaskExecutor {
     public static final String JVM_PARAM = " --jvm=\"-Xms%sG -Xmx%sG\" ";
     /**
      * python process(datax only supports version 2.7 by default)
+     *
+     * modified by james, datax's python version depends on users'
+     * PYTHON_HOME config
      */
-    private static final String DATAX_PYTHON = "python2.7";
+    private static final String DATAX_PYTHON = "python";
     private static final Pattern PYTHON_PATH_PATTERN = Pattern.compile("/bin/python[\\d.]*$");
     /**
      * datax path

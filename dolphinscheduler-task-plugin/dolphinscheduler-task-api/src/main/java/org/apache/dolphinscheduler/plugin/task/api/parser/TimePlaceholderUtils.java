@@ -307,7 +307,7 @@ public class TimePlaceholderUtils {
         logger.warn(String.format("\texpression=%s, date=%s", expression, date.toString()));
         // expression=yyyyMMdd-1, date=Tue May 24 11:30:10 UTC 2022
         String calculatedTime = calculateTime(expression, date);
-        logger.warn(String.format("\tcalculatedTime=%s", calculatedTime));
+        logger.warn(String.format("\t->calculatedTime=%s", calculatedTime));
         // calculatedTime=20220523
 
         return calculatedTime;
