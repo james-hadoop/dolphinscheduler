@@ -50,7 +50,7 @@ CREATE TABLE `t_escheduler_alert` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_alertgroup
@@ -64,7 +64,7 @@ CREATE TABLE `t_escheduler_alertgroup` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_command
@@ -86,7 +86,7 @@ CREATE TABLE `t_escheduler_command` (
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   `process_instance_priority` int(11) DEFAULT NULL COMMENT 'process instance priority: 0 Highest,1 High,2 Medium,3 Low,4 Lowest',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_datasource
@@ -102,7 +102,7 @@ CREATE TABLE `t_escheduler_datasource` (
   `create_time` datetime NOT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_master_server
@@ -117,7 +117,7 @@ CREATE TABLE `t_escheduler_master_server` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `last_heartbeat_time` datetime DEFAULT NULL COMMENT 'last heart beat time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_process_definition
@@ -142,7 +142,7 @@ CREATE TABLE `t_escheduler_process_definition` (
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`),
   KEY `process_definition_index` (`project_id`,`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_process_instance
@@ -181,7 +181,7 @@ CREATE TABLE `t_escheduler_process_instance` (
   PRIMARY KEY (`id`),
   KEY `process_instance_index` (`process_definition_id`,`id`) USING BTREE,
   KEY `start_time_index` (`start_time`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_project
@@ -197,7 +197,7 @@ CREATE TABLE `t_escheduler_project` (
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`),
   KEY `user_id_index` (`user_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_queue
@@ -208,7 +208,7 @@ CREATE TABLE `t_escheduler_queue` (
   `queue_name` varchar(64) DEFAULT NULL COMMENT 'queue name',
   `queue` varchar(64) DEFAULT NULL COMMENT 'yarn queue name',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_relation_datasource_user
@@ -222,7 +222,7 @@ CREATE TABLE `t_escheduler_relation_datasource_user` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_relation_process_instance
@@ -234,7 +234,7 @@ CREATE TABLE `t_escheduler_relation_process_instance` (
   `parent_task_instance_id` int(11) DEFAULT NULL COMMENT 'parent process instance id',
   `process_instance_id` int(11) DEFAULT NULL COMMENT 'child process instance id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_relation_project_user
@@ -249,7 +249,7 @@ CREATE TABLE `t_escheduler_relation_project_user` (
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`),
   KEY `user_id_index` (`user_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_relation_resources_user
@@ -263,7 +263,7 @@ CREATE TABLE `t_escheduler_relation_resources_user` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_relation_udfs_user
@@ -277,7 +277,7 @@ CREATE TABLE `t_escheduler_relation_udfs_user` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_relation_user_alertgroup
@@ -290,7 +290,7 @@ CREATE TABLE `t_escheduler_relation_user_alertgroup` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_resources
@@ -307,7 +307,7 @@ CREATE TABLE `t_escheduler_resources` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_schedules
@@ -328,7 +328,7 @@ CREATE TABLE `t_escheduler_schedules` (
   `create_time` datetime NOT NULL COMMENT 'create time',
   `update_time` datetime NOT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_session
@@ -340,7 +340,7 @@ CREATE TABLE `t_escheduler_session` (
   `ip` varchar(45) DEFAULT NULL COMMENT 'ip',
   `last_login_time` datetime DEFAULT NULL COMMENT 'last login time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_task_instance
@@ -372,7 +372,7 @@ CREATE TABLE `t_escheduler_task_instance` (
   KEY `process_instance_id` (`process_instance_id`) USING BTREE,
   KEY `task_instance_index` (`process_definition_id`,`process_instance_id`) USING BTREE,
   CONSTRAINT `foreign_key_instance_id` FOREIGN KEY (`process_instance_id`) REFERENCES `t_escheduler_process_instance` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_tenant
@@ -387,7 +387,7 @@ CREATE TABLE `t_escheduler_tenant` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_udfs
@@ -407,7 +407,7 @@ CREATE TABLE `t_escheduler_udfs` (
   `create_time` datetime NOT NULL COMMENT 'create time',
   `update_time` datetime NOT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_user
@@ -425,7 +425,7 @@ CREATE TABLE `t_escheduler_user` (
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name_unique` (`user_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_escheduler_worker_server
@@ -440,7 +440,7 @@ CREATE TABLE `t_escheduler_worker_server` (
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `last_heartbeat_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
  /*drop table first */
  DROP TABLE IF EXISTS QRTZ_FIRED_TRIGGERS;

@@ -83,6 +83,7 @@ public class PythonTask extends AbstractTaskExecutor {
         logger.info("python task params {}", taskRequest.getTaskParams());
 
         pythonParameters = JSONUtils.parseObject(taskRequest.getTaskParams(), PythonParameters.class);
+        logger.warn(String.format("pythonParameters: %s", pythonParameters));
 
         if (!pythonParameters.checkParameters()) {
             throw new TaskException("python task params is not valid");
