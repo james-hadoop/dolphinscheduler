@@ -51,7 +51,6 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
     @Autowired
     private Authenticator authenticator;
 
-≈
     /**
      * Intercept the execution of a handler. Called after HandlerMapping determined
      *
