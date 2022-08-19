@@ -31,9 +31,9 @@ This article describes how to add a new master service or worker service to an e
 mkdir -p /opt
 cd /opt
 # decompress
-tar -zxvf apache-dolphinscheduler-3.0.0-beta-2-bin.tar.gz -C /opt
+tar -zxvf apache-dolphinscheduler-3.0.0-bin.tar.gz -C /opt
 cd /opt
-mv apache-dolphinscheduler-3.0.0-beta-2-bin  dolphinscheduler
+mv apache-dolphinscheduler-3.0.0-bin  dolphinscheduler
 ```
 
 ```markdown
@@ -137,19 +137,19 @@ sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
 
 bin/stop-all.sh # stop all services
 
-sh bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
-sh bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-sh bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
-sh bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
+bash bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
+bash bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
+bash bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
+bash bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
 
 
 # start command::
 bin/start-all.sh # start all services
 
-sh bin/dolphinscheduler-daemon.sh start master-server  # start master service
-sh bin/dolphinscheduler-daemon.sh start worker-server  # start worker service
-sh bin/dolphinscheduler-daemon.sh start api-server     # start api    service
-sh bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
+bash bin/dolphinscheduler-daemon.sh start master-server  # start master service
+bash bin/dolphinscheduler-daemon.sh start worker-server  # start worker service
+bash bin/dolphinscheduler-daemon.sh start api-server     # start api    service
+bash bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
 
 ```
 
@@ -194,19 +194,19 @@ There are two steps for shrinking. After performing the following two steps, the
 # stop command:
 bin/stop-all.sh # stop all services
 
-sh bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
-sh bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-sh bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
-sh bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
+bash bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
+bash bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
+bash bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
+bash bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
 
 
 # start command:
 bin/start-all.sh # start all services
 
-sh bin/dolphinscheduler-daemon.sh start master-server # start master service
-sh bin/dolphinscheduler-daemon.sh start worker-server # start worker service
-sh bin/dolphinscheduler-daemon.sh start api-server    # start api    service
-sh bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
+bash bin/dolphinscheduler-daemon.sh start master-server # start master service
+bash bin/dolphinscheduler-daemon.sh start worker-server # start worker service
+bash bin/dolphinscheduler-daemon.sh start api-server    # start api    service
+bash bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
 
 ```
 

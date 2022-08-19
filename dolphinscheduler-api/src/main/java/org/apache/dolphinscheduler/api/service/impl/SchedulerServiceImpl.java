@@ -126,7 +126,7 @@ public class SchedulerServiceImpl extends BaseServiceImpl implements SchedulerSe
      * @return create result code
      */
     @Override
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     public Map<String, Object> insertSchedule(User loginUser,
                                               long projectCode,
                                               long processDefineCode,
@@ -227,7 +227,7 @@ public class SchedulerServiceImpl extends BaseServiceImpl implements SchedulerSe
      * @return update result code
      */
     @Override
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     public Map<String, Object> updateSchedule(User loginUser,
                                               long projectCode,
                                               Integer id,
@@ -277,7 +277,7 @@ public class SchedulerServiceImpl extends BaseServiceImpl implements SchedulerSe
      * @return publish result code
      */
     @Override
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     public Map<String, Object> setScheduleState(User loginUser,
                                                 long projectCode,
                                                 Integer id,
@@ -571,6 +571,7 @@ public class SchedulerServiceImpl extends BaseServiceImpl implements SchedulerSe
         ScheduleParam scheduleParam = JSONUtils.parseObject(schedule, ScheduleParam.class);
         Date now = new Date();
 
+        assert scheduleParam != null;
         Date startTime = DateUtils.transformTimezoneDate(scheduleParam.getStartTime(), scheduleParam.getTimezoneId());
         Date endTime = DateUtils.transformTimezoneDate(scheduleParam.getEndTime(), scheduleParam.getTimezoneId());
         startTime =  now.after(startTime) ? now : startTime;

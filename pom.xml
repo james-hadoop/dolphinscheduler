@@ -19,7 +19,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.apache.dolphinscheduler</groupId>
     <artifactId>dolphinscheduler</artifactId>
-    <version>3.0.0-beta-2</version>
+    <version>3.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <url>https://dolphinscheduler.apache.org</url>
@@ -31,7 +31,7 @@
         <connection>scm:git:https://github.com/apache/dolphinscheduler.git</connection>
         <developerConnection>scm:git:https://github.com/apache/dolphinscheduler.git</developerConnection>
         <url>https://github.com/apache/dolphinscheduler</url>
-        <tag>3.0.0-beta-2</tag>
+        <tag>3.0.0-beta-1</tag>
     </scm>
     <mailingLists>
         <mailingList>
@@ -70,6 +70,7 @@
         <httpcore.version>4.4.15</httpcore.version>
         <junit.version>4.12</junit.version>
         <mysql.connector.version>8.0.16</mysql.connector.version>
+        <oracle-jdbc.version>21.5.0.0</oracle-jdbc.version>
         <slf4j.api.version>1.7.5</slf4j.api.version>
         <slf4j.log4j12.version>1.7.5</slf4j.log4j12.version>
         <commons.collections.version>3.2.2</commons.collections.version>
@@ -131,6 +132,7 @@
         <hibernate.validator.version>6.2.2.Final</hibernate.validator.version>
         <aws.sdk.version>1.12.160</aws.sdk.version>
         <joda-time.version>2.10.13</joda-time.version>
+        <lombok.version>1.18.20</lombok.version>
         <docker.hub>apache</docker.hub>
         <docker.repo>${project.name}</docker.repo>
         <docker.tag>${project.version}</docker.tag>
@@ -553,6 +555,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle.database.jdbc</groupId>
+                <artifactId>ojdbc8</artifactId>
+                <version>${oracle-jdbc.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -1221,6 +1229,12 @@
             <artifactId>powermock-core</artifactId>
             <version>${powermock.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

@@ -127,13 +127,29 @@ public class ResourcesServiceTest {
 
         PowerMockito.when(PropertyUtils.getResUploadStartupState()).thenReturn(false);
         User user = new User();
+        user.setId(1);
+        user.setUserType(UserType.GENERAL_USER);
+
+        //CURRENT_LOGIN_USER_TENANT_NOT_EXIST
+        MockMultipartFile mockMultipartFile = new MockMultipartFile("test.pdf", "test.pdf", "pdf", "test".getBytes());
+        PowerMockito.when(PropertyUtils.getResUploadStartupState()).thenReturn(true);
+        Mockito.when(userMapper.selectById(1)).thenReturn(getUser());
+        Mockito.when(tenantMapper.queryById(1)).thenReturn(null);
+        Result result = resourcesService.createResource(user, "ResourcesServiceTest", "ResourcesServiceTest", ResourceType.FILE, mockMultipartFile, -1, "/");
+        logger.info(result.toString());
+        Assert.assertEquals(Status.CURRENT_LOGIN_USER_TENANT_NOT_EXIST.getMsg(), result.getMsg());
+        //set tenant for user
+        user.setTenantId(1);
+        Mockito.when(tenantMapper.queryById(1)).thenReturn(getTenant());
+
         //HDFS_NOT_STARTUP
-        Result result = resourcesService.createResource(user, "ResourcesServiceTest", "ResourcesServiceTest", ResourceType.FILE, null, -1, "/");
+        PowerMockito.when(PropertyUtils.getResUploadStartupState()).thenReturn(false);
+        result = resourcesService.createResource(user, "ResourcesServiceTest", "ResourcesServiceTest", ResourceType.FILE, null, -1, "/");
         logger.info(result.toString());
         Assert.assertEquals(Status.STORAGE_NOT_STARTUP.getMsg(), result.getMsg());
 
         //RESOURCE_FILE_IS_EMPTY
-        MockMultipartFile mockMultipartFile = new MockMultipartFile("test.pdf", "".getBytes());
+        mockMultipartFile = new MockMultipartFile("test.pdf", "".getBytes());
         PowerMockito.when(PropertyUtils.getResUploadStartupState()).thenReturn(true);
         result = resourcesService.createResource(user, "ResourcesServiceTest", "ResourcesServiceTest", ResourceType.FILE, mockMultipartFile, -1, "/");
         logger.info(result.toString());
@@ -512,6 +528,48 @@ public class ResourcesServiceTest {
     }
 
     @Test
+    public void testOnlineCreateResourceWithDir() {
+        User user = getUser();
+        user.setId(1);
+
+        String dir1Path = "/dir1";
+        String dir2Path = "/dir2";
+        String resourceDir = dir1Path + dir2Path;
+        String resourceName = "test";
+        String resourceSuffix = "py";
+        String desc = "desc";
+        String content = "content";
+        String fullName = resourceDir + "/" + resourceName + "." + resourceSuffix;
+
+        Resource dir1 = new Resource();
+        dir1.setFullName(dir1Path);
+        dir1.setId(1);
+        dir1.setUserId(user.getId());
+        Resource dir2 = new Resource();
+        dir2.setFullName(resourceDir);
+        dir2.setUserId(user.getId());
+        Mockito.when(resourcesMapper.queryResource(dir1.getFullName(), ResourceType.FILE.ordinal())).thenReturn(Collections.singletonList(dir1));
+        Mockito.when(resourcesMapper.queryResource(resourceDir, ResourceType.FILE.ordinal())).thenReturn(null);
+
+        Tenant tenant = getTenant();
+        try {
+            PowerMockito.when(storageOperate.mkdir(tenant.getTenantCode(), null)).thenReturn(true);
+        } catch (IOException e) {
+            logger.error("storage error", e);
+        }
+
+        Mockito.when(tenantMapper.queryById(1)).thenReturn(getTenant());
+        Mockito.when(resourcesMapper.selectById(dir1.getId())).thenReturn(dir1);
+        Mockito.when(resourcesMapper.selectById(dir2.getId())).thenReturn(dir2);
+        Mockito.when(FileUtils.getUploadFilename(Mockito.anyString(), Mockito.anyString())).thenReturn("test");
+        PowerMockito.when(PropertyUtils.getResUploadStartupState()).thenReturn(true);
+        PowerMockito.when(FileUtils.writeContent2File(Mockito.anyString(), Mockito.anyString())).thenReturn(true);
+
+        Result<Object> result = resourcesService.onlineCreateOrUpdateResourceWithDir(user, fullName, desc, content);
+        Assert.assertEquals(Status.SUCCESS.getMsg(), result.getMsg());
+    }
+
+    @Test
     public void testUpdateResourceContent() {
         PowerMockito.when(PropertyUtils.getResUploadStartupState()).thenReturn(false);
 
@@ -780,7 +838,7 @@ public class ResourcesServiceTest {
         return resource;
     }
 
-    private Resource getResource(int resourceId,ResourceType type) {
+    private Resource getResource(int resourceId, ResourceType type) {
 
         Resource resource = new Resource();
         resource.setId(resourceId);

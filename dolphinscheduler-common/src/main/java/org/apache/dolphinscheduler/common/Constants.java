@@ -22,6 +22,7 @@ import org.apache.dolphinscheduler.plugin.task.api.enums.ExecutionStatus;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
 
+import java.time.Duration;
 import java.util.regex.Pattern;
 
 /**
@@ -49,6 +50,7 @@ public final class Constants {
     public static final String REGISTRY_DOLPHINSCHEDULER_LOCK_FAILOVER_MASTERS = "/lock/failover/masters";
     public static final String REGISTRY_DOLPHINSCHEDULER_LOCK_FAILOVER_WORKERS = "/lock/failover/workers";
     public static final String REGISTRY_DOLPHINSCHEDULER_LOCK_FAILOVER_STARTUP_MASTERS = "/lock/failover/startup-masters";
+
     public static final String FORMAT_SS = "%s%s";
     public static final String FORMAT_S_S = "%s/%s";
     public static final String FOLDER_SEPARATOR = "/";
@@ -158,6 +160,11 @@ public final class Constants {
      * COLON :
      */
     public static final String COLON = ":";
+
+    /**
+     * period .
+     */
+    public static final String PERIOD = ".";
 
     /**
      * QUESTION ?
@@ -362,6 +369,11 @@ public final class Constants {
     public static final String CMDPARAM_COMPLEMENT_DATA_END_DATE = "complementEndDate";
 
     /**
+     * complement data Schedule date
+     */
+    public static final String CMDPARAM_COMPLEMENT_DATA_SCHEDULE_DATE_LIST = "complementScheduleDateList";
+
+    /**
      * complement date default cron string
      */
     public static final String DEFAULT_CRON_STRING = "0 0 0 * * ? *";
@@ -369,22 +381,24 @@ public final class Constants {
     /**
      * sleep 1000ms
      */
-    public static final int SLEEP_TIME_MILLIS = 1000;
+    public static final long SLEEP_TIME_MILLIS = 1_000L;
 
     /**
      * short sleep 100ms
      */
-    public static final int SLEEP_TIME_MILLIS_SHORT = 100;
+    public static final long SLEEP_TIME_MILLIS_SHORT = 100L;
+
+    public static final Duration SERVER_CLOSE_WAIT_TIME = Duration.ofSeconds(3);
 
     /**
      * one second mils
      */
-    public static final int SECOND_TIME_MILLIS = 1000;
+    public static final long SECOND_TIME_MILLIS = 1_000L;
 
     /**
      * master task instance cache-database refresh interval
      */
-    public static final int CACHE_REFRESH_TIME_MILLIS = 20 * 1000;
+    public static final long CACHE_REFRESH_TIME_MILLIS = 20 * 1_000L;
 
     /**
      * heartbeat for zk info length
@@ -636,28 +650,31 @@ public final class Constants {
      */
     public static final String LOGIN_USER_KEY_TAB_PATH = "login.user.keytab.path";
 
+    public static final String WORKFLOW_INSTANCE_ID_MDC_KEY = "workflowInstanceId";
+    public static final String TASK_INSTANCE_ID_MDC_KEY = "taskInstanceId";
+
     /**
      * task log info format
      */
     public static final String TASK_LOG_INFO_FORMAT = "TaskLogInfo-%s";
 
-    public static final int[] NOT_TERMINATED_STATES = new int[]{
-            ExecutionStatus.SUBMITTED_SUCCESS.ordinal(),
-            ExecutionStatus.DISPATCH.ordinal(),
-            ExecutionStatus.RUNNING_EXECUTION.ordinal(),
-            ExecutionStatus.DELAY_EXECUTION.ordinal(),
-            ExecutionStatus.READY_PAUSE.ordinal(),
-            ExecutionStatus.READY_STOP.ordinal(),
-            ExecutionStatus.NEED_FAULT_TOLERANCE.ordinal(),
-            ExecutionStatus.WAITING_THREAD.ordinal(),
-            ExecutionStatus.WAITING_DEPEND.ordinal()
+    public static final int[] NOT_TERMINATED_STATES = new int[] {
+        ExecutionStatus.SUBMITTED_SUCCESS.ordinal(),
+        ExecutionStatus.DISPATCH.ordinal(),
+        ExecutionStatus.RUNNING_EXECUTION.ordinal(),
+        ExecutionStatus.DELAY_EXECUTION.ordinal(),
+        ExecutionStatus.READY_PAUSE.ordinal(),
+        ExecutionStatus.READY_STOP.ordinal(),
+        ExecutionStatus.NEED_FAULT_TOLERANCE.ordinal(),
+        ExecutionStatus.WAITING_THREAD.ordinal(),
+        ExecutionStatus.WAITING_DEPEND.ordinal()
     };
 
-    public static final int[] RUNNING_PROCESS_STATE = new int[]{
-            ExecutionStatus.RUNNING_EXECUTION.ordinal(),
-            ExecutionStatus.SUBMITTED_SUCCESS.ordinal(),
-            ExecutionStatus.DISPATCH.ordinal(),
-            ExecutionStatus.SERIAL_WAIT.ordinal()
+    public static final int[] RUNNING_PROCESS_STATE = new int[] {
+        ExecutionStatus.RUNNING_EXECUTION.ordinal(),
+        ExecutionStatus.SUBMITTED_SUCCESS.ordinal(),
+        ExecutionStatus.DISPATCH.ordinal(),
+        ExecutionStatus.SERIAL_WAIT.ordinal()
     };
 
     /**
@@ -795,7 +812,7 @@ public final class Constants {
      */
     public static final String PSTREE = "pstree";
 
-    public static final Boolean KUBERNETES_MODE = !StringUtils.isEmpty(System.getenv("KUBERNETES_SERVICE_HOST")) && !StringUtils.isEmpty(System.getenv("KUBERNETES_SERVICE_PORT"));
+    public static final boolean KUBERNETES_MODE = !StringUtils.isEmpty(System.getenv("KUBERNETES_SERVICE_HOST")) && !StringUtils.isEmpty(System.getenv("KUBERNETES_SERVICE_PORT"));
 
     /**
      * dry run flag

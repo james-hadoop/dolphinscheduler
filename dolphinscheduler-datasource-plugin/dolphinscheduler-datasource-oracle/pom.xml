@@ -19,7 +19,7 @@
     <parent>
         <artifactId>dolphinscheduler-datasource-plugin</artifactId>
         <groupId>org.apache.dolphinscheduler</groupId>
-        <version>3.0.0-beta-2</version>
+        <version>3.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -39,6 +39,11 @@
             <groupId>org.apache.dolphinscheduler</groupId>
             <artifactId>dolphinscheduler-datasource-api</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
         </dependency>
 
         <dependency>

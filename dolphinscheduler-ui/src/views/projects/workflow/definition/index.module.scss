@@ -72,14 +72,6 @@
   margin-top: 20px;
 }
 
-.operation {
-  > div {
-    > div {
-      margin-right: 5px !important;
-    }
-  }
-}
-
 .startup {
   align-items: center;
   > div:first-child {
@@ -111,6 +103,9 @@
       .n-button,
       .n-button__content {
         width: 100%;
+        span {
+          padding-bottom: 1px;
+        }
       }
     }
   }

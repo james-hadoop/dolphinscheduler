@@ -17,7 +17,7 @@
 你可以最快速的体验到 DolphinScheduler 的大部分功能，了解主要和概念和内容。
 
 ```shell
-$ DOLPHINSCHEDULER_VERSION=3.0.0-beta-2
+$ DOLPHINSCHEDULER_VERSION=3.0.0
 $ docker run --name dolphinscheduler-standalone-server -p 12345:12345 -p 25333:25333 -d apache/dolphinscheduler-standalone-server:"${DOLPHINSCHEDULER_VERSION}"
 ```
 
@@ -43,7 +43,7 @@ $ docker run --name dolphinscheduler-standalone-server -p 12345:12345 -p 25333:2
 源码包对应的值为 "Total Source Code"。当下载完源码后就可以运行命令进行部署了。
 
 ```shell
-$ DOLPHINSCHEDULER_VERSION=3.0.0-beta-2
+$ DOLPHINSCHEDULER_VERSION=3.0.0
 $ tar -zxf apache-dolphinscheduler-"${DOLPHINSCHEDULER_VERSION}"-src.tar.gz
 # Mac Linux 用户
 $ cd apache-dolphinscheduler-"${DOLPHINSCHEDULER_VERSION}"-src/deploy/docker
@@ -65,7 +65,7 @@ $ docker-compose --profile all up -d
 ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 DolphinScheduler 容器。
 
 ```shell
-$ DOLPHINSCHEDULER_VERSION=3.0.0-beta-2
+$ DOLPHINSCHEDULER_VERSION=3.0.0
 # 初始化数据库，其确保数据库 <DATABASE> 已经存在
 $ docker run -d --name dolphinscheduler-tools \
     -e DATABASE="postgresql" \
@@ -118,7 +118,7 @@ $ docker run -d --name dolphinscheduler-alert-server \
 访问 DolphinScheduler。访问上述链接后会跳转到登陆页面，DolphinScheduler 默认的用户和密码分别为 `admin` 和 `dolphinscheduler123`。
 想要了解更多操作请参考用户手册[快速上手](../start/quick-start.md)。
 
-![login](/img/new_ui/dev/quick-start/login.png)
+![login](../../../../img/new_ui/dev/quick-start/login.png)
 
 > 注意：如果你使用沿用已有的 PostgreSQL 和 ZooKeeper 服务方式启动服务，且服务分布在多台机器中，
 > 请将上述的地址改成你 API 容器启动的 hostname 或者 IP。

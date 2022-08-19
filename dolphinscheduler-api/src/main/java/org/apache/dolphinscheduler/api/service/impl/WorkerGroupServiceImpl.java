@@ -23,6 +23,7 @@ import org.apache.dolphinscheduler.api.utils.PageInfo;
 import org.apache.dolphinscheduler.api.utils.Result;
 import org.apache.dolphinscheduler.common.Constants;
 import org.apache.dolphinscheduler.common.enums.NodeType;
+import org.apache.dolphinscheduler.common.utils.HeartBeat;
 import org.apache.dolphinscheduler.dao.entity.ProcessInstance;
 import org.apache.dolphinscheduler.dao.entity.User;
 import org.apache.dolphinscheduler.dao.entity.WorkerGroup;
@@ -77,6 +78,7 @@ public class WorkerGroupServiceImpl extends BaseServiceImpl implements WorkerGro
      * @return create or update result code
      */
     @Override
+    @Transactional
     public Map<String, Object> saveWorkerGroup(User loginUser, int id, String name, String addrList) {
         Map<String, Object> result = new HashMap<>();
         if (isNotAdmin(loginUser, result)) {
@@ -286,9 +288,9 @@ public class WorkerGroupServiceImpl extends BaseServiceImpl implements WorkerGro
             if (isPaging) {
                 wg.setAddrList(String.join(Constants.COMMA, childrenNodes));
                 String registeredValue = registryClient.get(workerGroupPath + Constants.SINGLE_SLASH + childrenNodes.iterator().next());
-                String[] rv = registeredValue.split(Constants.COMMA);
-                wg.setCreateTime(new Date(Long.parseLong(rv[6])));
-                wg.setUpdateTime(new Date(Long.parseLong(rv[7])));
+                HeartBeat heartBeat = HeartBeat.decodeHeartBeat(registeredValue);
+                wg.setCreateTime(new Date(heartBeat.getStartupTime()));
+                wg.setUpdateTime(new Date(heartBeat.getReportTime()));
                 wg.setSystemDefault(true);
             }
             workerGroups.add(wg);
@@ -303,7 +305,7 @@ public class WorkerGroupServiceImpl extends BaseServiceImpl implements WorkerGro
      * @return delete result code
      */
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     public Map<String, Object> deleteWorkerGroupById(User loginUser, Integer id) {
         Map<String, Object> result = new HashMap<>();
         if (isNotAdmin(loginUser, result)) {

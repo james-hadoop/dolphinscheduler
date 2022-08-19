@@ -50,6 +50,7 @@ import org.apache.dolphinscheduler.dao.entity.ProcessDefinition;
 import org.apache.dolphinscheduler.dao.entity.ProcessInstance;
 import org.apache.dolphinscheduler.dao.entity.ProcessTaskRelationLog;
 import org.apache.dolphinscheduler.dao.entity.Project;
+import org.apache.dolphinscheduler.dao.entity.ResponseTaskLog;
 import org.apache.dolphinscheduler.dao.entity.TaskDefinition;
 import org.apache.dolphinscheduler.dao.entity.TaskDefinitionLog;
 import org.apache.dolphinscheduler.dao.entity.TaskInstance;
@@ -344,10 +345,10 @@ public class ProcessInstanceServiceImpl extends BaseServiceImpl implements Proce
     private void addDependResultForTaskList(List<TaskInstance> taskInstanceList) throws IOException {
         for (TaskInstance taskInstance : taskInstanceList) {
             if (TASK_TYPE_DEPENDENT.equalsIgnoreCase(taskInstance.getTaskType())) {
-                Result<String> logResult = loggerService.queryLog(
+                Result<ResponseTaskLog> logResult = loggerService.queryLog(
                     taskInstance.getId(), Constants.LOG_QUERY_SKIP_LINE_NUMBER, Constants.LOG_QUERY_LIMIT);
                 if (logResult.getCode() == Status.SUCCESS.ordinal()) {
-                    String log = logResult.getData();
+                    String log = logResult.getData().getMessage();
                     Map<String, DependResult> resultMap = parseLogForDependentResult(log);
                     taskInstance.setDependentResult(JSONUtils.toJsonString(resultMap));
                 }
@@ -447,7 +448,7 @@ public class ProcessInstanceServiceImpl extends BaseServiceImpl implements Proce
      * @param tenantCode tenantCode
      * @return update result code
      */
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     @Override
     public Map<String, Object> updateProcessInstance(User loginUser, long projectCode, Integer processInstanceId, String taskRelationJson,
                                                      String taskDefinitionJson, String scheduleTime, Boolean syncDefine, String globalParams,
@@ -614,7 +615,7 @@ public class ProcessInstanceServiceImpl extends BaseServiceImpl implements Proce
      * @return delete result code
      */
     @Override
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional
     public Map<String, Object> deleteProcessInstanceById(User loginUser, long projectCode, Integer processInstanceId) {
         Project project = projectMapper.queryByCode(projectCode);
         //check user access for project
@@ -829,5 +830,4 @@ public class ProcessInstanceServiceImpl extends BaseServiceImpl implements Proce
     public List<ProcessInstance> queryByProcessDefineCode(Long processDefinitionCode, int size) {
         return processInstanceMapper.queryByProcessDefineCode(processDefinitionCode, size);
     }
-
 }

@@ -32,7 +32,7 @@ if sys.version_info[0] < 3:
 
 logger = logging.getLogger(__name__)
 
-version = "3.0.0-beta-2"
+version = "3.0.0"
 
 # Start package required
 prod = [
@@ -52,6 +52,7 @@ doc = [
     "sphinx_rtd_theme>=1.0",
     "sphinx-click>=3.0",
     "sphinx-inline-tabs",
+    "sphinx-copybutton>=0.4.0",
 ]
 
 test = [

@@ -638,7 +638,9 @@ CREATE TABLE `t_ds_project` (
   `create_time` datetime NOT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
   PRIMARY KEY (`id`),
-  KEY `user_id_index` (`user_id`) USING BTREE
+  KEY `user_id_index` (`user_id`) USING BTREE,
+  UNIQUE KEY `unique_name`(`name`),
+  UNIQUE KEY `unique_code`(`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -655,7 +657,8 @@ CREATE TABLE `t_ds_queue` (
   `queue` varchar(64) DEFAULT NULL COMMENT 'yarn queue name',
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_queue_name`(`queue_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -834,7 +837,7 @@ CREATE TABLE `t_ds_task_instance` (
   `end_time` datetime DEFAULT NULL COMMENT 'task end time',
   `host` varchar(135) DEFAULT NULL COMMENT 'host of task running on',
   `execute_path` varchar(200) DEFAULT NULL COMMENT 'task execute path in the host',
-  `log_path` varchar(200) DEFAULT NULL COMMENT 'task log path',
+  `log_path` longtext DEFAULT NULL COMMENT 'task log path',
   `alert_flag` tinyint(4) DEFAULT NULL COMMENT 'whether alert',
   `retry_times` int(4) DEFAULT '0' COMMENT 'task retry times',
   `pid` int(4) DEFAULT NULL COMMENT 'pid of task',
@@ -874,7 +877,8 @@ CREATE TABLE `t_ds_tenant` (
   `queue_id` int(11) DEFAULT NULL COMMENT 'queue id',
   `create_time` datetime DEFAULT NULL COMMENT 'create time',
   `update_time` datetime DEFAULT NULL COMMENT 'update time',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_tenant_code`(`tenant_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -898,7 +902,8 @@ CREATE TABLE `t_ds_udfs` (
   `resource_name` varchar(255) NOT NULL COMMENT 'resource name',
   `create_time` datetime NOT NULL COMMENT 'create time',
   `update_time` datetime NOT NULL COMMENT 'update time',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_func_name`(`func_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------

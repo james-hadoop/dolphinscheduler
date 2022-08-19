@@ -19,12 +19,15 @@ package org.apache.dolphinscheduler.server.worker.runner;
 
 import static org.apache.dolphinscheduler.common.Constants.SINGLE_SLASH;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.dolphinscheduler.common.Constants;
 import org.apache.dolphinscheduler.common.enums.WarningType;
 import org.apache.dolphinscheduler.common.exception.StorageOperateNoConfiguredException;
 import org.apache.dolphinscheduler.common.storage.StorageOperate;
-import org.apache.dolphinscheduler.common.utils.*;
+import org.apache.dolphinscheduler.common.utils.CommonUtils;
+import org.apache.dolphinscheduler.common.utils.DateUtils;
+import org.apache.dolphinscheduler.common.utils.JSONUtils;
+import org.apache.dolphinscheduler.common.utils.LoggerUtils;
+import org.apache.dolphinscheduler.common.utils.PropertyUtils;
 import org.apache.dolphinscheduler.plugin.task.api.AbstractTask;
 import org.apache.dolphinscheduler.plugin.task.api.TaskChannel;
 import org.apache.dolphinscheduler.plugin.task.api.TaskExecutionContext;
@@ -32,24 +35,34 @@ import org.apache.dolphinscheduler.plugin.task.api.TaskExecutionContextCacheMana
 import org.apache.dolphinscheduler.plugin.task.api.enums.ExecutionStatus;
 import org.apache.dolphinscheduler.plugin.task.api.model.Property;
 import org.apache.dolphinscheduler.plugin.task.api.model.TaskAlertInfo;
+import org.apache.dolphinscheduler.remote.command.CommandType;
 import org.apache.dolphinscheduler.server.utils.ProcessUtils;
-import org.apache.dolphinscheduler.server.worker.processor.TaskCallbackService;
+import org.apache.dolphinscheduler.server.worker.rpc.WorkerMessageSender;
 import org.apache.dolphinscheduler.service.alert.AlertClientService;
 import org.apache.dolphinscheduler.service.exceptions.ServiceException;
 import org.apache.dolphinscheduler.service.task.TaskPluginManager;
 
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.nio.file.NoSuchFileException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import io.micrometer.core.lang.NonNull;
 
 /**
  * task scheduler thread
@@ -64,17 +77,11 @@ public class TaskExecuteThread implements Runnable, Delayed {
     /**
      * task instance
      */
-    private TaskExecutionContext taskExecutionContext;
+    private final TaskExecutionContext taskExecutionContext;
 
-    public StorageOperate getStorageOperate() {
-        return storageOperate;
-    }
+    private final String masterAddress;
 
-    public void setStorageOperate(StorageOperate storageOperate) {
-        this.storageOperate = storageOperate;
-    }
-
-    private StorageOperate storageOperate;
+    private final StorageOperate storageOperate;
 
     /**
      * abstract task
@@ -84,12 +91,12 @@ public class TaskExecuteThread implements Runnable, Delayed {
     /**
      * task callback service
      */
-    private TaskCallbackService taskCallbackService;
+    private final WorkerMessageSender workerMessageSender;
 
     /**
      * alert client server
      */
-    private AlertClientService alertClientService;
+    private final AlertClientService alertClientService;
 
     private TaskPluginManager taskPluginManager;
 
@@ -97,38 +104,56 @@ public class TaskExecuteThread implements Runnable, Delayed {
      * constructor
      *
      * @param taskExecutionContext taskExecutionContext
-     * @param taskCallbackService taskCallbackService
+     * @param workerMessageSender  used for worker send message to master
      */
-    public TaskExecuteThread(TaskExecutionContext taskExecutionContext,
-                             TaskCallbackService taskCallbackService,
-                             AlertClientService alertClientService) {
+    public TaskExecuteThread(@NonNull TaskExecutionContext taskExecutionContext,
+                             @NonNull String masterAddress,
+                             @NonNull WorkerMessageSender workerMessageSender,
+                             @NonNull AlertClientService alertClientService,
+                             StorageOperate storageOperate) {
         this.taskExecutionContext = taskExecutionContext;
-        this.taskCallbackService = taskCallbackService;
+        this.masterAddress = masterAddress;
+        this.workerMessageSender = workerMessageSender;
         this.alertClientService = alertClientService;
+        this.storageOperate = storageOperate;
     }
 
-    public TaskExecuteThread(TaskExecutionContext taskExecutionContext,
-                             TaskCallbackService taskCallbackService,
-                             AlertClientService alertClientService,
-                             TaskPluginManager taskPluginManager) {
+    public TaskExecuteThread(@NonNull TaskExecutionContext taskExecutionContext,
+                             @NonNull String masterAddress,
+                             @NonNull WorkerMessageSender workerMessageSender,
+                             @NonNull AlertClientService alertClientService,
+                             @NonNull TaskPluginManager taskPluginManager,
+                             StorageOperate storageOperate) {
         this.taskExecutionContext = taskExecutionContext;
-        this.taskCallbackService = taskCallbackService;
+        this.masterAddress = masterAddress;
+        this.workerMessageSender = workerMessageSender;
         this.alertClientService = alertClientService;
         this.taskPluginManager = taskPluginManager;
+        this.storageOperate = storageOperate;
     }
 
     @Override
     public void run() {
-        if (Constants.DRY_RUN_FLAG_YES == taskExecutionContext.getDryRun()) {
-            taskExecutionContext.setCurrentExecutionStatus(ExecutionStatus.SUCCESS);
-            taskExecutionContext.setStartTime(new Date());
-            taskExecutionContext.setEndTime(new Date());
-            TaskExecutionContextCacheManager.removeByTaskInstanceId(taskExecutionContext.getTaskInstanceId());
-            taskCallbackService.sendTaskExecuteResponseCommand(taskExecutionContext);
-            return;
-        }
-
         try {
+            LoggerUtils.setWorkflowAndTaskInstanceIDMDC(taskExecutionContext.getProcessInstanceId(),
+                                                        taskExecutionContext.getTaskInstanceId());
+            if (Constants.DRY_RUN_FLAG_YES == taskExecutionContext.getDryRun()) {
+                taskExecutionContext.setCurrentExecutionStatus(ExecutionStatus.SUCCESS);
+                taskExecutionContext.setStartTime(new Date());
+                taskExecutionContext.setEndTime(new Date());
+                TaskExecutionContextCacheManager.removeByTaskInstanceId(taskExecutionContext.getTaskInstanceId());
+                workerMessageSender.sendMessageWithRetry(taskExecutionContext,
+                                                         masterAddress,
+                                                         CommandType.TASK_EXECUTE_RESULT);
+                logger.info("Task dry run success");
+                return;
+            }
+        } finally {
+            LoggerUtils.removeWorkflowAndTaskInstanceIdMDC();
+        }
+        try {
+            LoggerUtils.setWorkflowAndTaskInstanceIDMDC(taskExecutionContext.getProcessInstanceId(),
+                                                        taskExecutionContext.getTaskInstanceId());
             logger.info("script path : {}", taskExecutionContext.getExecutePath());
             if (taskExecutionContext.getStartTime() == null) {
                 taskExecutionContext.setStartTime(new Date());
@@ -137,11 +162,14 @@ public class TaskExecuteThread implements Runnable, Delayed {
 
             // callback task execute running
             taskExecutionContext.setCurrentExecutionStatus(ExecutionStatus.RUNNING_EXECUTION);
-            taskCallbackService.sendTaskExecuteRunningCommand(taskExecutionContext);
+            workerMessageSender.sendMessageWithRetry(taskExecutionContext,
+                                                     masterAddress,
+                                                     CommandType.TASK_EXECUTE_RUNNING);
 
             // copy hdfs/minio file to local
-            List<Pair<String, String>> fileDownloads = downloadCheck(taskExecutionContext.getExecutePath(), taskExecutionContext.getResources());
-            if (!fileDownloads.isEmpty()){
+            List<Pair<String, String>> fileDownloads = downloadCheck(taskExecutionContext.getExecutePath(),
+                                                                     taskExecutionContext.getResources());
+            if (!fileDownloads.isEmpty()) {
                 downloadResource(taskExecutionContext.getExecutePath(), logger, fileDownloads);
             }
 
@@ -149,8 +177,8 @@ public class TaskExecuteThread implements Runnable, Delayed {
             taskExecutionContext.setDefinedParams(getGlobalParamsMap());
 
             taskExecutionContext.setTaskAppId(String.format("%s_%s",
-                    taskExecutionContext.getProcessInstanceId(),
-                    taskExecutionContext.getTaskInstanceId()));
+                                                            taskExecutionContext.getProcessInstanceId(),
+                                                            taskExecutionContext.getTaskInstanceId()));
 
             preBuildBusinessParams();
 
@@ -199,8 +227,11 @@ public class TaskExecuteThread implements Runnable, Delayed {
             taskExecutionContext.setAppIds(this.task.getAppIds());
         } finally {
             TaskExecutionContextCacheManager.removeByTaskInstanceId(taskExecutionContext.getTaskInstanceId());
-            taskCallbackService.sendTaskExecuteResponseCommand(taskExecutionContext);
+            workerMessageSender.sendMessageWithRetry(taskExecutionContext,
+                                                     masterAddress,
+                                                     CommandType.TASK_EXECUTE_RESULT);
             clearTaskExecPath();
+            LoggerUtils.removeWorkflowAndTaskInstanceIdMDC();
         }
     }
 
@@ -233,7 +264,11 @@ public class TaskExecuteThread implements Runnable, Delayed {
                 org.apache.commons.io.FileUtils.deleteDirectory(new File(execLocalPath));
                 logger.info("exec local path: {} cleared.", execLocalPath);
             } catch (IOException e) {
-                logger.error("delete exec dir failed : {}", e.getMessage(), e);
+                if (e instanceof NoSuchFileException) {
+                    // this is expected
+                } else {
+                    logger.error("Delete exec dir failed.", e);
+                }
             }
         }
     }
@@ -264,7 +299,7 @@ public class TaskExecuteThread implements Runnable, Delayed {
                 task.cancelApplication(true);
                 ProcessUtils.killYarnJob(taskExecutionContext);
             } catch (Exception e) {
-                logger.error(e.getMessage(), e);
+                logger.error("Kill task failed", e);
             }
         }
     }
@@ -282,9 +317,9 @@ public class TaskExecuteThread implements Runnable, Delayed {
                 // query the tenant code of the resource according to the name of the resource
                 String fullName = fileDownload.getLeft();
                 String tenantCode = fileDownload.getRight();
-                String resHdfsPath = storageOperate.getResourceFileName(tenantCode, fullName);
-                logger.info("get resource file from hdfs :{}", resHdfsPath);
-                storageOperate.download(tenantCode, resHdfsPath, execLocalPath + File.separator + fullName, false, true);
+                String resPath = storageOperate.getResourceFileName(tenantCode, fullName);
+                logger.info("get resource file from path:{}", resPath);
+                storageOperate.download(tenantCode, resPath, execLocalPath + File.separator + fullName, false, true);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
                 throw new ServiceException(e.getMessage());
@@ -294,11 +329,12 @@ public class TaskExecuteThread implements Runnable, Delayed {
 
     /**
      * download resource check
+     *
      * @param execLocalPath
      * @param projectRes
      * @return
      */
-    public List<Pair<String, String>> downloadCheck(String execLocalPath, Map<String, String> projectRes){
+    public List<Pair<String, String>> downloadCheck(String execLocalPath, Map<String, String> projectRes) {
         if (MapUtils.isEmpty(projectRes)) {
             return Collections.emptyList();
         }
@@ -306,13 +342,13 @@ public class TaskExecuteThread implements Runnable, Delayed {
         projectRes.forEach((key, value) -> {
             File resFile = new File(execLocalPath, key);
             boolean notExist = !resFile.exists();
-            if (notExist){
+            if (notExist) {
                 downloadFile.add(Pair.of(key, value));
-            } else{
+            } else {
                 logger.info("file : {} exists ", resFile.getName());
             }
         });
-        if (!downloadFile.isEmpty() && !PropertyUtils.getResUploadStartupState()){
+        if (!downloadFile.isEmpty() && !PropertyUtils.getResUploadStartupState()) {
             throw new StorageOperateNoConfiguredException("Storage service config does not exist!");
         }
         return downloadFile;
