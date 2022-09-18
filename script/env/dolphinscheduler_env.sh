@@ -16,14 +16,14 @@
 #
 
 # JAVA_HOME, will use it to start DolphinScheduler server
-export JAVA_HOME=${JAVA_HOME:-/opt/soft/java}
+export JAVA_HOME=${JAVA_HOME:-/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home}
 
 # Database related configuration, set database type, username and password
-export DATABASE=${DATABASE:-postgresql}
+export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL
-export SPRING_DATASOURCE_USERNAME
-export SPRING_DATASOURCE_PASSWORD
+export SPRING_DATASOURCE_URL="jdbc:mysql://locahost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true"
+export SPRING_DATASOURCE_USERNAME=developer
+export SPRING_DATASOURCE_PASSWORD=developer1qazXSW@
 
 # DolphinScheduler server related configuration
 export SPRING_CACHE_TYPE=${SPRING_CACHE_TYPE:-none}
@@ -35,12 +35,12 @@ export REGISTRY_TYPE=${REGISTRY_TYPE:-zookeeper}
 export REGISTRY_ZOOKEEPER_CONNECT_STRING=${REGISTRY_ZOOKEEPER_CONNECT_STRING:-localhost:2181}
 
 # Tasks related configurations, need to change the configuration if you use the related tasks.
-export HADOOP_HOME=${HADOOP_HOME:-/opt/soft/hadoop}
-export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/opt/soft/hadoop/etc/hadoop}
-export SPARK_HOME1=${SPARK_HOME1:-/opt/soft/spark1}
-export SPARK_HOME2=${SPARK_HOME2:-/opt/soft/spark2}
-export PYTHON_HOME=${PYTHON_HOME:-/opt/soft/python}
-export HIVE_HOME=${HIVE_HOME:-/opt/soft/hive}
+export HADOOP_HOME=${HADOOP_HOME:-/opt/apps/HADOOP-COMMON/hadoop-common-current/}
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/opt/apps/HADOOP-COMMON/hadoop-common-current/etc/hadoop}
+export SPARK_HOME1=${SPARK_HOME1:-/opt/apps/SPARK2/spark2-current}
+export SPARK_HOME2=${SPARK_HOME2:-/opt/apps/SPARK2/spark2-current}
+export PYTHON_HOME=${PYTHON_HOME:-/Users/jiangqian/venv3/bin/python}
+export HIVE_HOME=${HIVE_HOME:-/opt/apps/HIVE/hive-current}
 export FLINK_HOME=${FLINK_HOME:-/opt/soft/flink}
 export DATAX_HOME=${DATAX_HOME:-/opt/soft/datax}
 
