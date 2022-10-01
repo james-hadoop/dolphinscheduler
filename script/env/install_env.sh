@@ -31,12 +31,12 @@ sshPort=${sshPort:-"22"}
 # A comma separated list of machine hostname or IP would be installed Master server, it
 # must be a subset of configuration `ips`.
 # Example for hostnames: masters="ds1,ds2", Example for IPs: masters="192.168.8.1,192.168.8.2"
-masters=${masters:-"ds1"}
+masters=${masters:-"localhost"}
 
 # A comma separated list of machine <hostname>:<workerGroup> or <IP>:<workerGroup>.All hostname or IP must be a
 # subset of configuration `ips`, And workerGroup have default value as `default`, but we recommend you declare behind the hosts
 # Example for hostnames: workers="ds1:default,ds2:default,ds3:default", Example for IPs: workers="192.168.8.1:default,192.168.8.2:default,192.168.8.3:default"
-workers=${workers:-"ds1:default"}
+workers=${workers:-"localhost:default"}
 
 # A comma separated list of machine hostname or IP would be installed Alert server, it
 # must be a subset of configuration `ips`.
