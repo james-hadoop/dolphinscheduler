@@ -35,13 +35,13 @@ export REGISTRY_TYPE=${REGISTRY_TYPE:-zookeeper}
 export REGISTRY_ZOOKEEPER_CONNECT_STRING=${REGISTRY_ZOOKEEPER_CONNECT_STRING:-localhost:2181}
 
 # Tasks related configurations, need to change the configuration if you use the related tasks.
-export HADOOP_HOME=${HADOOP_HOME:-/opt/apps/HADOOP-COMMON/hadoop-common-current/}
-export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/opt/apps/HADOOP-COMMON/hadoop-common-current/etc/hadoop}
-export SPARK_HOME1=${SPARK_HOME1:-/opt/apps/SPARK2/spark2-current}
-export SPARK_HOME2=${SPARK_HOME2:-/opt/apps/SPARK2/spark2-current}
+export HADOOP_HOME=${HADOOP_HOME:-/Users/jiangqian/Documents/_AllDocMap/06_Software/hadoop-3.3.4}
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/Users/jiangqian/Documents/_AllDocMap/06_Software/hadoop-3.3.4/etc/hadoop}
+export SPARK_HOME1=${SPARK_HOME1:-/Users/jiangqian/Documents/_AllDocMap/06_Software/spark-3.3.0-bin-hadoop3}
+export SPARK_HOME2=${SPARK_HOME2:-/Users/jiangqian/Documents/_AllDocMap/06_Software/spark-3.3.0-bin-hadoop3}
 export PYTHON_HOME=${PYTHON_HOME:-/Users/jiangqian/venv3/bin/python}
-export HIVE_HOME=${HIVE_HOME:-/opt/apps/HIVE/hive-current}
-export FLINK_HOME=${FLINK_HOME:-/opt/soft/flink}
+export HIVE_HOME=${HIVE_HOME:-/Users/jiangqian/Documents/_AllDocMap/06_Software/apache-hive-3.1.2-bin}
+export FLINK_HOME=${FLINK_HOME:-/Users/jiangqian/Documents/_AllDocMap/06_Software/flink-1.15.2}
 export DATAX_HOME=${DATAX_HOME:-/opt/soft/datax}
 
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME/bin:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME/bin:$PATH
