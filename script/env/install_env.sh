@@ -50,12 +50,12 @@ apiServers=${apiServers:-"localhost"}
 
 # The directory to install DolphinScheduler for all machine we config above. It will automatically be created by `install.sh` script if not exists.
 # Do not set this configuration same as the current path (pwd)
-installPath=${installPath:-"/Users/jiangqian/Documents/_AllDocMap/02_Project/github/dolphinscheduler/dolphinscheduler-dist/target/apache-dolphinscheduler-3.1.1-SNAPSHOT-bin"}
+installPath=${installPath:-"/home/james/git_dir/dolphinscheduler/dolphinscheduler-dist/target/apache-dolphinscheduler-3.1.1-SNAPSHOT-bin"}
 
 # The user to deploy DolphinScheduler for all machine we config above. For now user must create by yourself before running `install.sh`
 # script. The user needs to have sudo privileges and permissions to operate hdfs. If hdfs is enabled than the root directory needs
 # to be created by this user
-deployUser=${deployUser:-"jiangqian"}
+deployUser=${deployUser:-"james"}
 
 # The root of zookeeper, for now DolphinScheduler default registry server is zookeeper.
 zkRoot=${zkRoot:-"/dolphinscheduler"}
