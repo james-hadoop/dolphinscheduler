@@ -42,6 +42,6 @@ export SPARK_HOME2=${SPARK_HOME2:-/Users/jiangqian/Documents/_AllDocMap/06_Softw
 export PYTHON_HOME=${PYTHON_HOME:-/Users/jiangqian/venv3/bin/python}
 export HIVE_HOME=${HIVE_HOME:-/Users/jiangqian/Documents/_AllDocMap/06_Software/apache-hive-3.1.2-bin}
 export FLINK_HOME=${FLINK_HOME:-/Users/jiangqian/Documents/_AllDocMap/06_Software/flink-1.15.2}
-export DATAX_HOME=${DATAX_HOME:-/opt/soft/datax}
+export DATAX_HOME=${DATAX_HOME:-/Users/jiangqian/Documents/_AllDocMap/02_Project/github/DataX/target/datax/datax}
 
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME/bin:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME/bin:$PATH
