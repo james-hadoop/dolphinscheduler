@@ -61,10 +61,17 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        // TODO
+        /**
+         * create by james on 2022-07-04.
+         *
+         * 通过 token 认证
+         */
         // get token
         String token = request.getHeader("token");
         User user;
         if (StringUtils.isEmpty(token)) {
+            // token 为空的时候，通过 Session 获取用户信息，再通过 token 认证
             user = authenticator.getAuthUser(request);
             // if user is null
             if (user == null) {

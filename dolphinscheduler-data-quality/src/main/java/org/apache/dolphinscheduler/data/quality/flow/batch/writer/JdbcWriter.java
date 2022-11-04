@@ -39,11 +39,15 @@ import org.apache.spark.sql.Row;
 import java.util.Arrays;
 
 import com.google.common.base.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * JdbcWriter
  */
 public class JdbcWriter implements BatchWriter {
+    private static final Logger logger = LoggerFactory.getLogger(JdbcWriter.class);
+
 
     private final Config config;
 
@@ -64,24 +68,35 @@ public class JdbcWriter implements BatchWriter {
     @Override
     public void prepare(SparkRuntimeEnvironment prepareEnv) {
         if (Strings.isNullOrEmpty(config.getString(SAVE_MODE))) {
-            config.put(SAVE_MODE,APPEND);
+            config.put(SAVE_MODE, APPEND);
         }
     }
 
     @Override
     public void write(Dataset<Row> data, SparkRuntimeEnvironment env) {
         if (!Strings.isNullOrEmpty(config.getString(SQL))) {
-            data = env.sparkSession().sql(config.getString(SQL));
+
+            // add by james
+            logger.warn("->->" + SQL);
+            logger.warn(config.getString(SQL));
+            logger.warn(data.showString(5, 1, true));
+
+            String sparkSql = config.getString(SQL);
+//            logger.warn(String.format("before: " + sparkSql));
+//            sparkSql = sparkSql.replaceAll("full join", "");
+//            logger.warn(String.format("after: " + sparkSql));
+
+            data = env.sparkSession().sql(sparkSql);
         }
 
         data.write()
-            .format(JDBC)
-            .option(DRIVER,config.getString(DRIVER))
-            .option(URL,config.getString(URL))
-            .option(DB_TABLE, config.getString(TABLE))
-            .option(USER, config.getString(USER))
-            .option(PASSWORD, config.getString(PASSWORD))
-            .mode(config.getString(SAVE_MODE))
-            .save();
+                .format(JDBC)
+                .option(DRIVER, config.getString(DRIVER))
+                .option(URL, config.getString(URL))
+                .option(DB_TABLE, config.getString(TABLE))
+                .option(USER, config.getString(USER))
+                .option(PASSWORD, config.getString(PASSWORD))
+                .mode(config.getString(SAVE_MODE))
+                .save();
     }
 }

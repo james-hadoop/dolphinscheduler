@@ -99,13 +99,14 @@ public final class AlertSenderService extends Thread {
                     .setTitle(alert.getTitle())
                     .setTitle(alert.getTitle())
                     .setWarnType(alert.getWarningType().getCode());
+            logger.warn("alertData:\n\t{}", alertData);
 
             int sendSuccessCount = 0;
             for (AlertPluginInstance instance : alertInstanceList) {
                 AlertResult alertResult = this.alertResultHandler(instance, alertData);
                 if (alertResult != null) {
                     AlertStatus sendStatus = Boolean.parseBoolean(String.valueOf(alertResult.getStatus())) ? AlertStatus.EXECUTION_SUCCESS : AlertStatus.EXECUTION_FAILURE;
-                    alertDao.addAlertSendStatus(sendStatus,alertResult.getMessage(),alertId,instance.getId());
+                    alertDao.addAlertSendStatus(sendStatus, alertResult.getMessage(), alertId, instance.getId());
                     if (sendStatus.equals(AlertStatus.EXECUTION_SUCCESS)) {
                         sendSuccessCount++;
                     }

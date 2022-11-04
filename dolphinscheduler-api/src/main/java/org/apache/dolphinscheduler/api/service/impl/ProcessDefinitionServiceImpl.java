@@ -348,11 +348,12 @@ public class ProcessDefinitionServiceImpl extends BaseServiceImpl implements Pro
                     return result;
                 }
             }
-            if (graphHasCycle(taskNodeList)) {
-                logger.error("process DAG has cycle");
-                putMsg(result, Status.PROCESS_NODE_HAS_CYCLE);
-                return result;
-            }
+//            // add by james -- 不检查循环依赖，为了把全量血缘倒进来，找到依赖关系后进行数据治理。如果不注释掉这个检查，数据导不进去。
+//            if (graphHasCycle(taskNodeList)) {
+//                logger.error("process DAG has cycle");
+//                putMsg(result, Status.PROCESS_NODE_HAS_CYCLE);
+//                return result;
+//            }
 
             // check whether the task relation json is normal
             for (ProcessTaskRelationLog processTaskRelationLog : taskRelationList) {

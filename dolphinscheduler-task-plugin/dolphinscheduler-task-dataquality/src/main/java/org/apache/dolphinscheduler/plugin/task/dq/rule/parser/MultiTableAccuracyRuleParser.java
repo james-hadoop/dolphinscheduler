@@ -31,6 +31,8 @@ import org.apache.dolphinscheduler.plugin.task.dq.rule.parameter.BaseConfig;
 import org.apache.dolphinscheduler.plugin.task.dq.rule.parameter.DataQualityConfiguration;
 import org.apache.dolphinscheduler.plugin.task.dq.utils.RuleParserUtils;
 import org.apache.dolphinscheduler.spi.utils.JSONUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,7 @@ import java.util.Map;
  * MultiTableAccuracyRuleParser
  */
 public class MultiTableAccuracyRuleParser implements IRuleParser {
+    private static final Logger logger = LoggerFactory.getLogger(MultiTableAccuracyRuleParser.class);
 
     @Override
     public DataQualityConfiguration parse(Map<String, String> inputParameterValue,
@@ -78,6 +81,9 @@ public class MultiTableAccuracyRuleParser implements IRuleParser {
         if (context.isCompareWithFixedValue()) {
             writerSql = writerSql.replaceAll("full join \\$\\{comparison_table}","");
         }
+
+        // TODO add by james
+        logger.warn("writerSql:\n\t{}", writerSql);
 
         List<BaseConfig> writerConfigList = RuleParserUtils.getAllWriterConfigList(inputParameterValue,
                 context, index, transformerConfigList, writerSql,RuleManager.TASK_STATISTICS_VALUE_WRITER_SQL);

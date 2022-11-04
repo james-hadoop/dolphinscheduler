@@ -52,6 +52,12 @@ public class SessionServiceImpl extends BaseServiceImpl implements SessionServic
     @Autowired
     private SessionMapper sessionMapper;
 
+    // TODO
+    /**
+     * create by james on 2022-07-04.
+     *
+     * 通过 Session 认证
+     */
     /**
      * get user session from request
      *

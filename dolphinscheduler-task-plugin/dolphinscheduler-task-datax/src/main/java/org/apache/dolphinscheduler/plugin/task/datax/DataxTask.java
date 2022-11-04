@@ -85,7 +85,7 @@ public class DataxTask extends AbstractTaskExecutor {
     /**
      * python process(datax only supports version 2.7 by default)
      */
-    private static final String DATAX_PYTHON = "python2.7";
+    private static final String DATAX_PYTHON = "python";
     private static final Pattern PYTHON_PATH_PATTERN = Pattern.compile("/bin/python[\\d.]*$");
     /**
      * datax path

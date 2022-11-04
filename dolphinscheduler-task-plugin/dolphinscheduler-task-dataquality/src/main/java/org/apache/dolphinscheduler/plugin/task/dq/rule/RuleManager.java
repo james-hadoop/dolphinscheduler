@@ -49,6 +49,7 @@ public class RuleManager {
     private final DataQualityTaskExecutionContext dataQualityTaskExecutionContext;
 
     private static final String NONE_COMPARISON_TYPE = "0";
+
     private static final String BASE_SQL =
             "select ${rule_type} as rule_type,"
                     + "${rule_name} as rule_name,"
@@ -66,6 +67,10 @@ public class RuleManager {
                     + "${create_time} as create_time,"
                     + "${update_time} as update_time ";
 
+    // TODO add by james
+    // 数据质量任务完成之后，运行该 SQL 查看数据质量问题
+    // 问题：${comparison_table} 为空
+    // ${statistics_table} -> invalid_length_count
     public static final String DEFAULT_COMPARISON_WRITER_SQL =
                     BASE_SQL + "from ${statistics_table} full join ${comparison_table}";
 
