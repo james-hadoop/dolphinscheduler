@@ -19,7 +19,7 @@
 export JAVA_HOME=${JAVA_HOME:-/opt/soft/java}
 
 # Database related configuration, set database type, username and password
-export DATABASE=${DATABASE:-postgresql}
+export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
 export SPRING_DATASOURCE_URL="jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true"
 export SPRING_DATASOURCE_USERNAME=developer
