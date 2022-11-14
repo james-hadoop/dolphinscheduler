@@ -26,9 +26,6 @@ server:
     mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json,application/xml
   jetty:
     max-http-form-post-size: 5000000
-    max-http-post-size: 5000000
-
-  max-http-header-size: 5000000
 
 spring:
   application:
@@ -45,10 +42,10 @@ spring:
   messages:
     basename: i18n/messages
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8
-    username: developer
-    password: developer
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/dolphinscheduler
+    username: root
+    password: root
     hikari:
       connection-test-query: select 1
       minimum-idle: 5
@@ -165,10 +162,10 @@ traffic:
     max-global-qps-rate: 300
     tenant-switch: false
     default-tenant-qps-rate: 10
-    #customize-tenant-qps-rate:
+      #customize-tenant-qps-rate:
       # eg.
       #tenant1: 11
-      #tenant2: 20
+    #tenant2: 20
 
 
 # Override by profile
@@ -180,9 +177,9 @@ spring:
       on-profile: mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler
-    username: developer
-    password: developer
+    url: jdbc:mysql://10.110.23.29:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: dolphin_user
+    password: XXXXXX
   quartz:
     properties:
       org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate

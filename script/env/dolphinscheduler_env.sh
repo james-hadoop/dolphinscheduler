@@ -16,14 +16,14 @@
 #
 
 # JAVA_HOME, will use it to start DolphinScheduler server
-export JAVA_HOME=${JAVA_HOME:-/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home}
+export JAVA_HOME=${JAVA_HOME:-/usr/lib/jvm/java}
 
 # Database related configuration, set database type, username and password
 export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL="jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true"
-export SPRING_DATASOURCE_USERNAME=developer
-export SPRING_DATASOURCE_PASSWORD=developer1qazXSW@
+export SPRING_DATASOURCE_URL="jdbc:mysql://10.110.23.29:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8"
+export SPRING_DATASOURCE_USERNAME=dolphin_user
+export SPRING_DATASOURCE_PASSWORD=XXXXXX
 
 # DolphinScheduler server related configuration
 export SPRING_CACHE_TYPE=${SPRING_CACHE_TYPE:-none}
@@ -43,6 +43,6 @@ export SPARK_HOME2=${SPARK_HOME2:-/Users/jiangqian/Documents/_AllDocMap/06_Softw
 export PYTHON_HOME=${PYTHON_HOME:-/Users/jiangqian/Documents/_AllDocMap/06_Software/venv3/bin/python3}
 export HIVE_HOME=${HIVE_HOME:-/Users/jiangqian/Documents/_AllDocMap/06_Software/apache-hive-3.1.2-bin}
 export FLINK_HOME=${FLINK_HOME:-/Users/jiangqian/Documents/_AllDocMap/06_Software/flink-1.15.2}
-export DATAX_HOME=${DATAX_HOME:-/Users/jiangqian/Documents/_AllDocMap/02_Project/github/DataX/target/datax/datax}
+export DATAX_HOME=${DATAX_HOME:-/home/httpd/software/datax}
 
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME/bin:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME/bin:$PATH
