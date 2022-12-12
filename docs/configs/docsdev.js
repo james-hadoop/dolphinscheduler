@@ -657,19 +657,19 @@ export default {
                 children: [
                     {
                         title: '简介',
-                        link: '/zh-cn/docs/3.1.3/user_doc/about/introduction.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/about/introduction.html',
                     },
                     {
                         title: '特性',
-                        link: '/zh-cn/docs/3.1.3/user_doc/about/features.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/about/features.html',
                     },
                     {
                         title: '建议配置',
-                        link: '/zh-cn/docs/3.1.3/user_doc/about/hardware.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/about/hardware.html',
                     },
                     {
                         title: '名词解释',
-                        link: '/zh-cn/docs/3.1.3/user_doc/about/glossary.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/about/glossary.html',
                     },
                 ],
             },
@@ -678,11 +678,11 @@ export default {
                 children: [
                     {
                         title: '快速上手',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/start/quick-start.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/start/quick-start.html',
                     },
                     {
                         title: 'Docker部署(Docker)',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/start/docker.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/start/docker.html',
                     },
                 ],
             },
@@ -691,30 +691,30 @@ export default {
                 children: [
                     {
                         title: '应用首页',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/homepage.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/homepage.html',
                     },
                     {
                         title: '项目管理',
                         children: [
                             {
                                 title: '项目列表',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/project/project-list.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/project/project-list.html',
                             },
                             {
                                 title: '工作流定义',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/project/workflow-definition.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/project/workflow-definition.html',
                             },
                             {
                                 title: '工作流实例',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/project/workflow-instance.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/project/workflow-instance.html',
                             },
                             {
                                 title: '任务实例',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/project/task-instance.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/project/task-instance.html',
                             },
                             {
                                 title: '任务定义',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/project/task-definition.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/project/task-definition.html',
                             },
                         ]
                     },
@@ -723,115 +723,115 @@ export default {
                         children: [
                             {
                                 title: 'Appendix',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/appendix.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/appendix.html',
                             },
                             {
                                 title: 'Shell',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/shell.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/shell.html',
                             },
                             {
                                 title: 'SubProcess',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/sub-process.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/sub-process.html',
                             },
                             {
                                 title: 'Dependent',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/dependent.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/dependent.html',
                             },
                             {
                                 title: 'Stored Procedure',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/stored-procedure.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/stored-procedure.html',
                             },
                             {
                                 title: 'SQL',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/sql.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/sql.html',
                             },
                             {
                                 title: 'Spark',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/spark.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/spark.html',
                             },
                             {
                                 title: 'MapReduce',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/map-reduce.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/map-reduce.html',
                             },
                             {
                                 title: 'Python',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/python.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/python.html',
                             },
                             {
                                 title: 'Flink',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/flink.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/flink.html',
                             },
                             {
                                 title: 'HTTP',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/http.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/http.html',
                             },
                             {
                                 title: 'DataX',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/datax.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/datax.html',
                             },
                             {
                                 title: 'Pigeon',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/pigeon.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/pigeon.html',
                             },
                             {
                                 title: 'Conditions',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/conditions.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/conditions.html',
                             },
                             {
                                 title: 'Switch',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/switch.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/switch.html',
                             },
                             {
                                 title: 'SeaTunnel',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/seatunnel.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/seatunnel.html',
                             },
                             {
                                 title: 'Amazon EMR',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/emr.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/emr.html',
                             },
                             {
                                 title: 'Apache Zeppelin',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/zeppelin.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/zeppelin.html',
                             },
                             {
                                 title: 'Jupyter',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/jupyter.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/jupyter.html',
                             },
                             {
                                 title: 'Hive CLI',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/hive-cli.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/hive-cli.html',
                             },
                             {
                                 title: 'Kubernetes',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/kubernetes.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/kubernetes.html',
                             },
                             {
                                 title: 'MLflow',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/mlflow.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/mlflow.html',
                             },
                             {
                                 title: 'Openmldb',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/openmldb.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/openmldb.html',
                             },
                             {
                                 title: 'DVC',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/dvc.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/dvc.html',
                             },
                             {
                                 title: 'Dinky',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/dinky.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/dinky.html',
                             },
                             {
                                 title: 'SageMaker',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/sagemaker.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/sagemaker.html',
                             },
                             {
                                 title: 'ChunJun',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/chunjun.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/chunjun.html',
                             },
                             {
                                 title: 'Pytorch',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/task/pytorch.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/task/pytorch.html',
                             },
                         ],
                     },
@@ -840,23 +840,23 @@ export default {
                         children: [
                             {
                                 title: '内置参数',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/parameter/built-in.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/parameter/built-in.html',
                             },
                             {
                                 title: '全局参数',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/parameter/global.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/parameter/global.html',
                             },
                             {
                                 title: '本地参数',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/parameter/local.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/parameter/local.html',
                             },
                             {
                                 title: '参数传递',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/parameter/context.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/parameter/context.html',
                             },
                             {
                                 title: '参数优先级',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/parameter/priority.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/parameter/priority.html',
                             },
                         ],
                     },
@@ -865,23 +865,23 @@ export default {
                         children: [
                             {
                                 title: 'MySQL',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/datasource/mysql.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/datasource/mysql.html',
                             },
                             {
                                 title: 'PostgreSQL',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/datasource/postgresql.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/datasource/postgresql.html',
                             },
                             {
                                 title: 'HIVE',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/datasource/hive.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/datasource/hive.html',
                             },
                             {
                                 title: 'Spark',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/datasource/spark.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/datasource/spark.html',
                             },
                             {
                                 title: 'Amazon Athena',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/datasource/athena.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/datasource/athena.html',
                             },
                         ],
                     },
@@ -890,39 +890,39 @@ export default {
                         children: [
                             {
                                 title: '告警组件向导',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/alert_plugin_user_guide.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/alert_plugin_user_guide.html',
                             },
                             {
                                 title: 'Email',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/email.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/email.html',
                             },
                             {
                                 title: 'Telegram',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/telegram.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/telegram.html',
                             },
                             {
                                 title: '钉钉告警',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/dingtalk.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/dingtalk.html',
                             },
                             {
                                 title: '企业微信',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/enterprise-wechat.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/enterprise-wechat.html',
                             },
                             {
                                 title: 'Webexteams',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/enterprise-webexteams.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/enterprise-webexteams.html',
                             },
                             {
                                 title: '脚本告警',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/script.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/script.html',
                             },
                             {
                                 title: 'Http告警',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/http.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/http.html',
                             },
                             {
                                 title: '飞书告警',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/alert/feishu.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/alert/feishu.html',
                             },
                         ],
                     },
@@ -931,63 +931,63 @@ export default {
                         children: [
                             {
                                 title: '简介',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/resource/intro.html'
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/resource/intro.html'
                             },
                             {
                                 title: '配置详情',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/resource/configuration.html'
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/resource/configuration.html'
                             },
                             {
                                 title: '文件管理',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/resource/file-manage.html'
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/resource/file-manage.html'
                             },
                             {
                                 title: 'UDF 管理',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/resource/udf-manage.html'
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/resource/udf-manage.html'
                             },
                             {
                                 title: '任务组管理',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/resource/task-group.html'
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/resource/task-group.html'
                             },
                         ],
                     },
                     {
                         title: '监控中心',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/monitor.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/monitor.html',
                     },
                     {
                         title: '安全中心',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/security.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/security.html',
                     },
                     {
                         title: '指标相关',
                         children: [
                             {
                                 title: '指标',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/metrics/metrics.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/metrics/metrics.html',
                             }
                         ],
                     },
                     {
                         title: '数据质量',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/data-quality.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/data-quality.html',
                     },
                     {
                         title: '升级',
                         children: [
                             {
                                 title: '不向前兼容的更新',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/upgrade/incompatible.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/upgrade/incompatible.html',
                             },
                             {
                                 title: '升级步骤',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/upgrade/upgrade.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/upgrade/upgrade.html',
                             },
                         ],
                     },
                     {
                         title: '扩/缩容',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/expansion-reduction.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/expansion-reduction.html',
                     },
                 ],
             },
@@ -996,26 +996,26 @@ export default {
                 children: [
                     {
                         title: '单机部署(Standalone)',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/installation/standalone.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/installation/standalone.html',
                     },
                     {
                         title: '伪集群部署(Pseudo-Cluster)',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/installation/pseudo-cluster.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/installation/pseudo-cluster.html',
                     },
                     {
                         title: '集群部署(Cluster)',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/installation/cluster.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/installation/cluster.html',
                     },
                     {
                         title: 'Kubernetes部署(Kubernetes)',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/installation/kubernetes.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/installation/kubernetes.html',
                     },
                     {
                         title: '集成',
                         children: [
                             {
                                 title: '基于Rainbond部署(Cluster)',
-                                link: '/zh-cn/docs/3.1.3/user_doc/guide/integration/rainbond.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/guide/integration/rainbond.html',
                             },
                         ],
                     },
@@ -1026,27 +1026,27 @@ export default {
                 children: [
                     {
                         title: '元数据文档',
-                        link: '/zh-cn/docs/3.1.3/user_doc/architecture/metadata.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/architecture/metadata.html',
                     },
                     {
                         title: '架构设计',
-                        link: '/zh-cn/docs/3.1.3/user_doc/architecture/design.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/architecture/design.html',
                     },
                     {
                         title: '配置文件',
-                        link: '/zh-cn/docs/3.1.3/user_doc/architecture/configuration.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/architecture/configuration.html',
                     },
                     {
                         title: '任务结构',
-                        link: '/zh-cn/docs/3.1.3/user_doc/architecture/task-structure.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/architecture/task-structure.html',
                     },
                     {
                         title: '负载均衡',
-                        link: '/zh-cn/docs/3.1.3/user_doc/architecture/load-balance.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/architecture/load-balance.html',
                     },
                     {
                         title: '缓存',
-                        link: '/zh-cn/docs/3.1.3/user_doc/architecture/cache.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/architecture/cache.html',
                     },
                 ],
             },
@@ -1055,7 +1055,7 @@ export default {
                 children: [
                     {
                         title: 'API调用',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/open-api.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/open-api.html',
                     },
                     {
                         title: 'PyDolphinScheduler',
@@ -1063,7 +1063,7 @@ export default {
                     },
                     {
                         title: '健康检查',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/healthcheck.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/healthcheck.html',
                     },
                 ],
             },
@@ -1075,69 +1075,69 @@ export default {
                         children: [
                             {
                                 title: '报告安全问题',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/security.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/security.html',
                             },
                             {
                                 title: '如何成为 Committer',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/become-a-committer.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/become-a-committer.html',
                             },
                             {
                                 title: '订阅/取消订阅邮件列表',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/subscribe.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/subscribe.html',
                             },
                             {
                                 title: '参与贡献',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/contribute.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/contribute.html',
                             },
                             {
                                 title: '行为准则',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/code-conduct.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/code-conduct.html',
                             },
                             {
                                 title: 'Review Issue or Pull Requests',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/review.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/review.html',
                             },
                             {
                                 title: 'E2E Contribution Guide',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/e2e-guide.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/e2e-guide.html',
                             },
                             {
                                 title: '提交代码',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/submit-code.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/submit-code.html',
                             },
                             {
                                 title: 'License须知',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/DS-License.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/DS-License.html',
                             },
                             {
                                 title: '文档须知',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/document.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/document.html',
                             },
                             {
                                 title: 'Issue须知',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/issue.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/issue.html',
                             },
                             {
                                 title: 'Pull Request须知',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/pull-request.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/pull-request.html',
                             },
                             {
                                 title: 'Commit Message须知',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/commit-message.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/commit-message.html',
                             },
                             {
                                 title: '微基准测试须知',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/microbench.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/microbench.html',
                             },
                             {
                                 title: '单元测试编写指南',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/join/unit-test.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/join/unit-test.html',
                             },
                         ],
                     },
                     {
                         title: '环境搭建',
-                        link: '/zh-cn/docs/3.1.3/user_doc/contribute/development-environment-setup.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/contribute/development-environment-setup.html',
                     },
                     {
                         title: '设计文档',
@@ -1148,27 +1148,27 @@ export default {
                             // children: [
                             {
                                 title: '架构设计',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/architecture-design.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/architecture-design.html',
                             },
                             {
                                 title: 'Alert SPI',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/backend/spi/alert.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/backend/spi/alert.html',
                             },
                             {
                                 title: 'Registry SPI',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/backend/spi/registry.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/backend/spi/registry.html',
                             },
                             {
                                 title: 'Task SPI',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/backend/spi/task.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/backend/spi/task.html',
                             },
                             {
                                 title: 'Datasource SPI',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/backend/spi/datasource.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/backend/spi/datasource.html',
                             },
                             {
                                 title: '组件设计',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/backend/mechanism/overview.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/backend/mechanism/overview.html',
                             },
                         ],
                     },
@@ -1177,23 +1177,23 @@ export default {
                         children: [
                             {
                                 title: '前端开发',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/frontend-development.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/frontend-development.html',
                             },
                             {
                                 title: 'API规范',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/api-standard.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/api-standard.html',
                             },
                             {
                                 title: 'E2E 自动化测试',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/e2e-test.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/e2e-test.html',
                             },
                             {
                                 title: 'API 自动化测试',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/api-test.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/api-test.html',
                             },
                             {
                                 title: '日志规范',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/log-specification.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/log-specification.html',
                             },
                         ],
                     },
@@ -1202,21 +1202,21 @@ export default {
                         children: [
                             {
                                 title: '发版准备',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/release/release-prepare.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/release/release-prepare.html',
                             },
                             {
                                 title: '发版指南',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/release/release.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/release/release.html',
                             },
                             {
                                 title: '发版后续',
-                                link: '/zh-cn/docs/3.1.3/user_doc/contribute/release/release-post.html',
+                                link: '/zh-cn/docs/3.1.2/user_doc/contribute/release/release-post.html',
                             },
                         ],
                     },
                     {
                         title: '问题与交流',
-                        link: '/zh-cn/docs/3.1.3/user_doc/contribute/have-questions.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/contribute/have-questions.html',
                     },
                 ],
             },
@@ -1225,7 +1225,7 @@ export default {
                 children: [
                     {
                         title: 'DSIP',
-                        link: '/zh-cn/docs/3.1.3/user_doc/DSIP.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/DSIP.html',
                     },
                 ],
             },
@@ -1234,11 +1234,11 @@ export default {
                 children: [
                     {
                         title: '通用设置',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/howto/general-setting.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/howto/general-setting.html',
                     },
                     {
                         title: '数据源设置',
-                        link: '/zh-cn/docs/3.1.3/user_doc/guide/howto/datasource-setting.html',
+                        link: '/zh-cn/docs/3.1.2/user_doc/guide/howto/datasource-setting.html',
                     },
                     {
                         title: '其他',
