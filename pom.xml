@@ -24,7 +24,7 @@
     </parent>
     <groupId>org.apache.dolphinscheduler</groupId>
     <artifactId>dolphinscheduler</artifactId>
-    <version>3.1.3-SNAPSHOT</version>
+    <version>3.1.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>Dolphin Scheduler is a distributed and easy-to-expand visual DAG workflow scheduling system, dedicated
@@ -47,7 +47,6 @@
         <module>dolphinscheduler-data-quality</module>
         <module>dolphinscheduler-standalone-server</module>
         <module>dolphinscheduler-datasource-plugin</module>
-        <module>dolphinscheduler-python</module>
         <module>dolphinscheduler-meter</module>
         <module>dolphinscheduler-master</module>
         <module>dolphinscheduler-worker</module>
@@ -89,8 +88,6 @@
         <docker.tag>${project.version}</docker.tag>
         <docker.build.skip>true</docker.build.skip>
         <docker.push.skip>true</docker.push.skip>
-
-        <python.sign.skip>true</python.sign.skip>
         <skipDepCheck>true</skipDepCheck>
     </properties>
 
@@ -168,11 +165,6 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-python</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.apache.dolphinscheduler</groupId>
                 <artifactId>dolphinscheduler-alert-api</artifactId>
