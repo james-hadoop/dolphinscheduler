@@ -121,10 +121,10 @@ public class WorkFlowLineageController extends BaseController {
     /**
      * Whether task can be deleted or not, avoiding task depend on other task of process definition delete by accident.
      *
-     * @param loginUser login user
-     * @param projectCode project codes which taskCode belong
+     * @param loginUser             login user
+     * @param projectCode           project codes which taskCode belong
      * @param processDefinitionCode project code which taskCode belong
-     * @param taskCode task definition code
+     * @param taskCode              task definition code
      * @return Result of task can be delete or not
      */
     @ApiOperation(value = "verifyTaskCanDelete", notes = "VERIFY_TASK_CAN_DELETE")

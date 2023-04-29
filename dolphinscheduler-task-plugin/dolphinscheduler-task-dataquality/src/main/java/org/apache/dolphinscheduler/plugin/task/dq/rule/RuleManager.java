@@ -97,6 +97,12 @@ public class RuleManager {
     }
 
     /**
+     * create by james on 2023-04-18.
+     * TODO
+     *
+     * 根据用户的配置信息，使用不同的规则解析器，来解析数据监控规则
+     */
+    /**
      * @return DataQualityConfiguration
      * @throws RuntimeException RuntimeException
      */

@@ -49,6 +49,12 @@ public class SingleTableCustomSqlRuleParser implements IRuleParser {
         List<BaseConfig> transformerConfigList = RuleParserUtils
                 .getSingleTableCustomSqlTransformerConfigList(index,inputParameterValue);
 
+        /**
+         * create by james on 2023-04-18.
+         * TODO
+         *
+         * 修改 Sql 占位符
+         */
         //replace the placeholder in execute sql list
         index = RuleParserUtils.replaceExecuteSqlPlaceholder(
                                     dqRuleExecuteSqlList,

@@ -111,6 +111,12 @@ public class DataQualityTask extends AbstractYarnTask {
                 inputParameter,
                 dataQualityTaskExecutionContext);
 
+        /**
+         * create by james on 2023-04-18.
+         * TODO
+         *
+         * 用户配置的数据质量监控规则
+         */
         DataQualityConfiguration dataQualityConfiguration =
                 ruleManager.generateDataQualityParameter();
 

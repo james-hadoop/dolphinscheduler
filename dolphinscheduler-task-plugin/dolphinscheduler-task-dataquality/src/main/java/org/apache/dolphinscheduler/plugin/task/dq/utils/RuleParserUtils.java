@@ -219,6 +219,12 @@ public class RuleParserUtils {
         return index;
     }
 
+    /**
+     * create by james on 2023-04-18.
+     * TODO
+     *
+     * 自定义 Sql 进行数据质量监控
+     */
     public static List<BaseConfig> getSingleTableCustomSqlTransformerConfigList(int index,
             Map<String, String> inputParameterValueResult) {
         List<BaseConfig> list = new ArrayList<>();
